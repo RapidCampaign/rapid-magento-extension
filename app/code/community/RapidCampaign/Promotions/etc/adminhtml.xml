@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <rapidcampaign_promotional translate="title">
+                                        <title>Promotional Content</title>
+                                    </rapidcampaign_promotional>
+                                    <rapidcampaign_general translate="title">
+                                        <title>General Settings</title>
+                                    </rapidcampaign_general>
+                                    <rapidcampaign_developer translate="title">
+                                        <title>Developer Settings</title>
+                                    </rapidcampaign_developer>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

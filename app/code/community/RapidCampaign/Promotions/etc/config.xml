@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<config>
+    <modules>
+        <RapidCampaign_Promotions>
+            <version>1.0.0</version>
+        </RapidCampaign_Promotions>
+    </modules>
+    <global>
+        <helpers>
+            <rapidcampaign_promotions>
+                <class>RapidCampaign_Promotions_Helper</class>
+            </rapidcampaign_promotions>
+        </helpers>
+        <blocks>
+            <rapidcampaign_promotions>
+                <class>RapidCampaign_Promotions_Block</class>
+            </rapidcampaign_promotions>
+        </blocks>
+        <models>
+            <rapidcampaign_promotions>
+                <class>RapidCampaign_Promotions_Model</class>
+            </rapidcampaign_promotions>
+        </models>
+    </global>
+    <default>
+        <rapidcampaign_general>
+            <rapidcampaign_general_group>
+                <enable>1</enable>
+                <enable_encryption>1</enable_encryption>
+                <enable_analytics>1</enable_analytics>
+                <cookie_lifetime>2592000</cookie_lifetime>
+            </rapidcampaign_general_group>
+        </rapidcampaign_general>
+        <rapidcampaign_developer>
+            <rapidcampaign_developer_group>
+                <enable_test_mode>1</enable_test_mode>
+                <enable_debug_logs>1</enable_debug_logs>
+            </rapidcampaign_developer_group>
+        </rapidcampaign_developer>
+    </default>
+</config>
