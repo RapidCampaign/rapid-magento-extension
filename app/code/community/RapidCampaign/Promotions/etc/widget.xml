@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<widgets>
+    <rapidcampaign_promotion type="rapidcampaign_promotions/widget_promotion" translate="name" module="rapidcampaign_promotions">
+        <name>RapidCampaign Promotion</name>
+    </rapidcampaign_promotion>
+</widgets>
