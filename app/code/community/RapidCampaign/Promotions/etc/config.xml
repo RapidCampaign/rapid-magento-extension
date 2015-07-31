@@ -32,6 +32,12 @@
         </models>
     </global>
     <default>
+        <rapidcampaign_promotions>
+            <api_endpoint>
+                <production>http://api.rapidcampaign.com</production>
+                <test>http://api.dev.rapidcampaign.com</test>
+            </api_endpoint>
+        </rapidcampaign_promotions>
         <rapidcampaign_general>
             <rapidcampaign_general_group>
                 <enable>1</enable>
