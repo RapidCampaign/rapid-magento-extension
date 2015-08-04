@@ -1,0 +1,35 @@
+- # 500 Internal Server Error response on /promotions request
+  - 1
+  - null
+  - 500
+  - ''
+- # 401 Unauthorized response on /promotions request
+  - 2
+  - null
+  - 401
+  - ''
+- # 403 Forbidden response on /promotions request
+  - 3
+  - null
+  - 403
+  - ''
+- # Throws empty response error on /promotions/ request
+  - 4
+  - null
+  - 0
+  - ''
+- # Valid response on /promotions request
+  - 5
+  - null
+  - 200
+  - '[{"locale":"en_GB","slug":"a","name":"A example"},{"locale":"en_GB","slug":"b","name":"B example"},{"locale":"en_GB","slug":"c","name":"C example"}]'
+- # Valid response on /promotions/a request
+  - 6
+  - a
+  - 200
+  - '{"locale":"en_GB","slug":"a","name":"A example"}'
+- # Invalid json response on /promotions/b request
+  - 7
+  - b
+  - 200
+  - '{not valid}'

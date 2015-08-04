@@ -47,6 +47,13 @@
             </rapidcampaign_promotions_setup>
         </resources>
     </global>
+    <phpunit>
+        <suite>
+            <modules>
+                <RapidCampaign_Promotions />
+            </modules>
+        </suite>
+    </phpunit>
     <default>
         <rapidcampaign_promotions>
             <api_endpoint>
