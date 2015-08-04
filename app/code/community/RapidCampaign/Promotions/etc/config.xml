@@ -28,8 +28,24 @@
         <models>
             <rapidcampaign_promotions>
                 <class>RapidCampaign_Promotions_Model</class>
+                <resourceModel>rapidcampaign_resource</resourceModel>
             </rapidcampaign_promotions>
+            <rapidcampaign_resource>
+                <class>RapidCampaign_Promotions_Model_Resource</class>
+                <entities>
+                    <promotions>
+                        <table>rapidcampaign_promotions</table>
+                    </promotions>
+                </entities>
+            </rapidcampaign_resource>
         </models>
+        <resources>
+            <rapidcampaign_promotions_setup>
+                <setup>
+                    <module>RapidCampaign_Promotions</module>
+                </setup>
+            </rapidcampaign_promotions_setup>
+        </resources>
     </global>
     <default>
         <rapidcampaign_promotions>
