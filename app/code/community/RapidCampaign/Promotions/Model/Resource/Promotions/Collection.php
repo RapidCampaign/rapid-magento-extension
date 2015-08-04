@@ -16,4 +16,17 @@ class RapidCampaign_Promotions_Model_Resource_Promotions_Collection extends Mage
     {
         $this->_init('rapidcampaign_promotions/promotions');
     }
+
+    /**
+     * @param DateTime $dateTime
+     */
+    public function updateExpireTime(DateTime $dateTime)
+    {
+        $tableName = $this->getTable('rapidcampaign_promotions/promotions');
+
+        /** @var Varien_Db_Adapter_Interface $dbAdapter */
+        $dbAdapter = Mage::getSingleton('core/resource')->getConnection('core_write');
+
+        $dbAdapter->update($tableName, array('expire_time' => $dateTime->format('Y-m-d H:i:s')));
+    }
 }
