@@ -47,6 +47,17 @@
             </rapidcampaign_promotions_setup>
         </resources>
     </global>
+    <admin>
+        <routers>
+            <rapidcampaign>
+                <use>admin</use>
+                <args>
+                    <module>RapidCampaign_Promotions</module>
+                    <frontName>rapidcampaign</frontName>
+                </args>
+            </rapidcampaign>
+        </routers>
+    </admin>
     <phpunit>
         <suite>
             <modules>
