@@ -20,7 +20,8 @@ class RapidCampaign_Promotions_Model_Api_Client
      */
     public function performHTTPRequest($endpoint, $apiKey)
     {
-        $client = new RapidCampaign_Promotions_Model_HttpClient();
+        /** @var RapidCampaign_Promotions_Model_HttpClient $client */
+        $client = Mage::getSingleton('rapidcampaign_promotions/httpClient');
 
         $client->setUri($endpoint)
             ->setMethod(Varien_Http_Client::GET)

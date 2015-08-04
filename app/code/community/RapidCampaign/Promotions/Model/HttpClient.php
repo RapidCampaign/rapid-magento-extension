@@ -12,6 +12,11 @@
  */
 class RapidCampaign_Promotions_Model_HttpClient extends Varien_Http_Client
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * @return string of raw body
      */
