@@ -13,18 +13,6 @@ class RapidCampaign_Promotions_Model_Cache
     const API_CACHE_TIME = 86400;
 
     /**
-     * @return RapidCampaign_Promotions_Model_Resource_Promotions_Collection
-     */
-    public function getPromotionsCollection()
-    {
-        if ($this->cacheExpired()) {
-            $this->updateCache();
-        }
-
-        return Mage::getModel('rapidcampaign_promotions/promotions')->getCollection();
-    }
-
-    /**
      * @return RapidCampaign_Promotions_Model_Promotions
      */
     public function getPromotionsModel()
