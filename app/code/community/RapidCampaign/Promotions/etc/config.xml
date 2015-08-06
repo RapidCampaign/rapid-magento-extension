@@ -46,6 +46,17 @@
                 </setup>
             </rapidcampaign_promotions_setup>
         </resources>
+        <events>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <cart_product_added>
+                        <type>singleton</type>
+                        <class>rapidcampaign_promotions/observer</class>
+                        <method>onCartProductAdded</method>
+                    </cart_product_added>
+                </observers>
+            </checkout_cart_product_add_after>
+        </events>
     </global>
     <admin>
         <routers>
@@ -58,6 +69,17 @@
             </rapidcampaign>
         </routers>
     </admin>
+    <frontend>
+        <routers>
+            <rapidcampaign>
+                <use>standard</use>
+                <args>
+                    <module>RapidCampaign_Promotions</module>
+                    <frontName>rapidcampaign</frontName>
+                </args>
+            </rapidcampaign>
+        </routers>
+    </frontend>
     <phpunit>
         <suite>
             <modules>
