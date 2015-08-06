@@ -71,6 +71,9 @@
                 <production>http://api.rapidcampaign.com</production>
                 <test>http://api.dev.rapidcampaign.com</test>
             </api_endpoint>
+            <iframe>
+                <promotions_url>https://promotions.rapidcampaign.com</promotions_url>
+            </iframe>
         </rapidcampaign_promotions>
         <rapidcampaign_general>
             <rapidcampaign_general_group>
