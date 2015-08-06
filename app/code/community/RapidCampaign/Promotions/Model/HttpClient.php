@@ -14,6 +14,9 @@ class RapidCampaign_Promotions_Model_HttpClient extends Varien_Http_Client
 {
     public function __construct()
     {
+        // 60s request timeout
+        $this->config['timeout'] = 60;
+
         parent::__construct();
     }
 
