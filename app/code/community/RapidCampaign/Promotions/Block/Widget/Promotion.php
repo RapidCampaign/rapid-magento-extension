@@ -31,7 +31,7 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         $promotion = $promotionsCache->getPromotionsModel()->load($this->getData('promotion'));
 
         // Promotion does not exist
-        if (!$promotion) {
+        if ($promotion->isEmpty()) {
             return '';
         }
 
