@@ -13,6 +13,13 @@ class RapidCampaign_Promotions_CouponsController extends Mage_Core_Controller_Fr
      */
     public function applyAction()
     {
+        $moduleEnabled = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/enable');
+
+        // Module disabled
+        if (!$moduleEnabled) {
+            return $this->_redirectReferer();
+        }
+
         $coupon = Mage::app()->getRequest()->getParam('coupon');
 
         /** @var Mage_Checkout_Model_Session $sessionModel */

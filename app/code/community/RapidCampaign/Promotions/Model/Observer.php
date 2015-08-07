@@ -16,23 +16,32 @@ class RapidCampaign_Promotions_Model_Observer
      */
     public function onCartProductAdded($observer)
     {
+        $moduleEnabled = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/enable');
+
+        // Module disabled
+        if (!$moduleEnabled) {
+            return;
+        }
+
         /** @var Mage_Core_Model_Cookie $cookieModel */
         $cookieModel = Mage::getSingleton('core/cookie');
 
         $coupon = $cookieModel->get('coupon_code');
 
-        if ($coupon) {
-            /** @var Mage_Checkout_Model_Cart $cartModel */
-            $cartModel = Mage::getSingleton('checkout/cart');
-
-            // Apply coupon to cart
-            $cartModel->getQuote()
-                ->setCouponCode($coupon)
-                ->collectTotals()
-                ->save();
-
-            // Remove coupon cookie
-            $cookieModel->delete('coupon_code');
+        if (!$coupon) {
+            return;
         }
+
+        /** @var Mage_Checkout_Model_Cart $cartModel */
+        $cartModel = Mage::getSingleton('checkout/cart');
+
+        // Apply coupon to cart
+        $cartModel->getQuote()
+            ->setCouponCode($coupon)
+            ->collectTotals()
+            ->save();
+
+        // Remove cookie
+        $cookieModel->delete('coupon_code');
     }
 }
