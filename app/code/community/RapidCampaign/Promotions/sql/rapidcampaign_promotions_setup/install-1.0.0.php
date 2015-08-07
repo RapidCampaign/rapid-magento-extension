@@ -47,7 +47,7 @@ $table = $installer->getConnection()
     ->addColumn('expire_time', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
         'unsigned'  => true,
         'nullable'  => false
-    ), 'User id');
+    ), 'Expire Time');
 
 $installer->getConnection()->createTable($table);
 
