@@ -26,6 +26,11 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             return '';
         }
 
+        // The rules not valid
+        if (!$this->validateRules()) {
+            return '';
+        }
+
         /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
         $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
         $promotion = $promotionsCache->getPromotionsModel()->load($this->getData('promotion'));
@@ -72,6 +77,38 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         $iframeHeight = $promotionData['height'] ? : self::IFRAME_HEIGHT;
 
         return '<iframe width="' . $iframeWidth . '" height="' . $iframeHeight . '" src="' . $iframeUrl . '"></iframe>';
+    }
+
+    /**
+     * Validate widget rules
+     *
+     * @return bool
+     */
+    protected function validateRules()
+    {
+        /** @var Mage_SalesRUle_Model_Rule $salesRuleModel */
+        $salesRuleModel = Mage::getModel('salesrule/rule');
+
+        $rulesData = $this->getData('rule');
+
+        if (!$rulesData) {
+            return true;
+        }
+
+        $rules = unserialize(base64_decode($rulesData));
+        $salesRuleModel->loadPost($rules);
+
+        /** @var Mage_Checkout_Model_Cart $cartModel */
+        $cartModel = Mage::getSingleton('checkout/cart');
+
+        $address = $cartModel->getQuote()->collectTotals()->getShippingAddress();
+
+        // Validate rules
+        if (!$salesRuleModel->validate($address)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
