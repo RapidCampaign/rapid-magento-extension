@@ -44,4 +44,31 @@ class RapidCampaign_Promotions_Model_Observer
         // Remove cookie
         $cookieModel->delete('coupon_code');
     }
+
+    /**
+     * Hook build/save widget action and inject rule as parameters to post
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function onControllerActionPredispatch($observer)
+    {
+        /** @var Mage_Core_Controller_Request_Http $request */
+        $request    = $observer->getControllerAction()->getRequest();
+
+        $action     = $request->getActionName();
+        $controller = $request->getControllerName();
+
+        if (($action == 'buildWidget' && $controller == 'widget') || ($action == 'save' && $controller == 'widget_instance')) {
+            $rule = $request->getPost('rule', array());
+
+            if (!empty($rule)) {
+                $params = $request->getPost('parameters', array());
+
+                // Serialize, encode and inject rule to post parameters
+                $params['rule'] = base64_encode(serialize($rule));
+
+                $request->setPost('parameters', $params);
+            }
+        }
+    }
 }

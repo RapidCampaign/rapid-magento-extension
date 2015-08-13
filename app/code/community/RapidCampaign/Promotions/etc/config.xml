@@ -80,6 +80,26 @@
             </rapidcampaign>
         </routers>
     </frontend>
+    <adminhtml>
+        <layout>
+            <updates>
+                <rapidcampaign_promotions>
+                    <file>rapidcampaign.xml</file>
+                </rapidcampaign_promotions>
+            </updates>
+        </layout>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <build_widget_hook>
+                        <type>singleton</type>
+                        <class>rapidcampaign_promotions/observer</class>
+                        <method>onControllerActionPredispatch</method>
+                    </build_widget_hook>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </adminhtml>
     <phpunit>
         <suite>
             <modules>

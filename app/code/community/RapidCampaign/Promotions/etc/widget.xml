@@ -30,6 +30,14 @@
                 </helper_block>
                 <sort_order>10</sort_order>
             </promotion>
+            <conditions translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <description><![CDATA[Notes. Lorem ipsum dolor sit amet, consectetuer adipiscing elit]]></description>
+                <label>Targeting Conditions</label>
+                <type>rapidcampaign_promotions/widget_condition</type>
+                <sort_order>20</sort_order>
+            </conditions>
         </parameters>
     </rapidcampaign_promotion>
 </widgets>
