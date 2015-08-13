@@ -71,4 +71,71 @@ class RapidCampaign_Promotions_Model_Observer
             }
         }
     }
+
+    /**
+     * Hook block toHtml to add order variables to success page
+     *
+     * @param Varien_Event_Observer $observer
+     * @return Varien_Event_Observer
+     */
+    public function onBlockToHtml($observer)
+    {
+        /* @var $block Mage_Core_Block_Abstract */
+        $block = $observer->getBlock();
+
+        if (!$block instanceof Mage_Checkout_Block_Onepage_Success) {
+            return $observer;
+        }
+
+        if (get_class($block) !== 'Mage_Checkout_Block_Onepage_Success') {
+            return $observer;
+        }
+
+        $moduleEnabled = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/enable');
+
+        // Module disabled
+        if (!$moduleEnabled) {
+            return $observer;
+        }
+
+        /** @var Mage_Checkout_Model_Session $checkoutModel */
+        $checkoutModel = Mage::getSingleton('checkout/session');
+
+        /** @var Mage_Sales_Model_Order $orderModel */
+        $orderModel = Mage::getModel('sales/order');
+        $orderModel->loadByIncrementId($checkoutModel->getLastRealOrderId());
+
+        if ($orderModel->isEmpty()) {
+            return $observer;
+        }
+
+        $transport = $observer->getTransport();
+        $html      = $transport->getHtml();
+
+        $orderNumber   = Mage::helper('core')->jsonEncode($orderModel->getIncrementId());
+        $orderValue    = Mage::helper('core')->jsonEncode($orderModel->getSubtotal());
+        $couponCode    = Mage::helper('core')->jsonEncode($orderModel->getCouponCode());
+        $customerId    = Mage::helper('core')->jsonEncode($orderModel->getCustomerId());
+        $customerEmail = Mage::helper('core')->jsonEncode($orderModel->getCustomerEmail());
+
+        $analyticsScript = Mage::getStoreConfig('rapidcampaign_promotions/analytics_script/path');
+
+        // Add order variables to page
+        $html .= <<<SCRIPT
+<script type="text/javascript">
+//<![CDATA[
+    var order_number = {$orderNumber},
+        order_value = {$orderValue},
+        coupon_code = {$couponCode},
+        customer_id = {$customerId},
+        customer_email = {$customerEmail};
+//]]></script>
+<script src="{$analyticsScript}"></script>
+SCRIPT;
+
+        $transport->setHtml($html);
+        $observer->setTransport($transport);
+
+        return $observer;
+    }
 }

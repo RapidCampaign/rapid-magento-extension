@@ -79,6 +79,16 @@
                 </args>
             </rapidcampaign>
         </routers>
+        <events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <add_analytics_to_order_page>
+                        <class>rapidcampaign_promotions/observer</class>
+                        <method>onBlockToHtml</method>
+                    </add_analytics_to_order_page>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
     </frontend>
     <adminhtml>
         <layout>
@@ -116,6 +126,9 @@
             <iframe>
                 <promotions_url>https://promotions.rapidcampaign.com</promotions_url>
             </iframe>
+            <analytics_script>
+                <path>https://analytics.rapidcampaign.com/analytics.js</path>
+            </analytics_script>
         </rapidcampaign_promotions>
         <rapidcampaign_general>
             <rapidcampaign_general_group>
