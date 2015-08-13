@@ -119,7 +119,20 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
      */
     protected function encryptParameters($parameters)
     {
-        // TODO: Encrypt parameters
+        /** @var RapidCampaign_Promotions_Helper_Encrypter $encrypter */
+        $encrypter = Mage::helper('rapidcampaign_promotions/encrypter');
+
+        $encryptionKey = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/encryption_key');
+
+        $encrypter->setKey($encryptionKey);
+
+        try {
+            array_walk($parameters, function (&$item, $key) use ($encrypter) {
+                $item = $encrypter->encrypt($item);
+            });
+        } catch (Exception $e) {
+            return $parameters;
+        }
 
         return $parameters;
     }
