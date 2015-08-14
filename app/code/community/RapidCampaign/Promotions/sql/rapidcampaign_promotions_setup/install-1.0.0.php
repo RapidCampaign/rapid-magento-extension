@@ -34,6 +34,10 @@ $table = $installer->getConnection()
         'nullable'  => false,
         'default'   => ''
     ), 'Promotions Name')
+    ->addColumn('campaign_template_name', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
+        'nullable'  => false,
+        'default'   => ''
+    ), 'Campaign Template Name')
     ->addColumn('width', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'unsigned'  => true,
         'nullable'  => false,
@@ -44,6 +48,18 @@ $table = $installer->getConnection()
         'nullable'  => false,
         'default'   => '0'
     ), 'Promotion Height')
+    ->addColumn('promotion_category', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
+        'nullable'  => false,
+        'default'   => ''
+    ), 'Promotion Category')
+    ->addColumn('url', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
+        'nullable'  => false,
+        'default'   => ''
+    ), 'Promotion Url')
+    ->addColumn('embed_url', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
+        'nullable'  => false,
+        'default'   => ''
+    ), 'Promotion Embed Url')
     ->addColumn('expire_time', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
         'unsigned'  => true,
         'nullable'  => false
