@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
  */
 
-class RapidCampaign_Promotions_Model_Cache
+class RapidCampaign_Promotions_Model_Storage
 {
     // Cache API responses for 24h
     const API_CACHE_TIME = 86400;
@@ -22,6 +22,14 @@ class RapidCampaign_Promotions_Model_Cache
             $this->updateCache();
         }
 
+        return Mage::getModel('rapidcampaign_promotions/promotions');
+    }
+
+    /**
+     * @return RapidCampaign_Promotions_Model_Promotions
+     */
+    public function getCachedPromotionsModel()
+    {
         return Mage::getModel('rapidcampaign_promotions/promotions');
     }
 

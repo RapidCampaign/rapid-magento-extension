@@ -32,13 +32,13 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             return '';
         }
 
-        /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
-        $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
+        /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
+        $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
 
         try {
-            $promotionModel = $promotionsCache->getPromotionsModel();
+            $promotionModel = $promotionsStorage->getPromotionsModel();
         } catch (Exception $e) {
-            return '';
+            $promotionModel = $promotionsStorage->getCachedPromotionsModel();
         }
 
         $promotion = $promotionModel->load($this->getData('promotion'));

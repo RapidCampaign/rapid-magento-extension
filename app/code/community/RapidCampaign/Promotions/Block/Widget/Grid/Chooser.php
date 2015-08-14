@@ -39,13 +39,13 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
             ->setUniqId($uniqId);
 
         if ($element->getValue()) {
-            /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
-            $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
+            /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
+            $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
 
             try {
-                $promotionModel = $promotionsCache->getPromotionsModel();
+                $promotionModel = $promotionsStorage->getPromotionsModel();
             } catch (Exception $e) {
-                $promotionModel = Mage::getModel('rapidcampaign_promotions/promotions');
+                $promotionModel = $promotionsStorage->getCachedPromotionsModel();
             }
 
             $promotion = $promotionModel->load($element->getValue());
@@ -88,13 +88,13 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
      */
     protected function _prepareCollection()
     {
-        /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
-        $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
+        /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
+        $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
 
         try {
-            $promotionModel = $promotionsCache->getPromotionsModel();
+            $promotionModel = $promotionsStorage->getPromotionsModel();
         } catch (Exception $e) {
-            $promotionModel = Mage::getModel('rapidcampaign_promotions/promotions');
+            $promotionModel = $promotionsStorage->getCachedPromotionsModel();
         }
 
         /** @var RapidCampaign_Promotions_Model_Resource_Promotions_Collection $collection */

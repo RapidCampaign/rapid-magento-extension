@@ -146,9 +146,9 @@ SCRIPT;
      */
     public function cron()
     {
-        /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
-        $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
+        /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
+        $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
 
-        $promotionsCache->updateCache();
+        $promotionsStorage->updateCache();
     }
 }

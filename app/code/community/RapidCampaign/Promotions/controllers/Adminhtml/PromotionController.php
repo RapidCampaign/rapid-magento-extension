@@ -16,15 +16,15 @@ class RapidCampaign_Promotions_Adminhtml_PromotionController extends Mage_Adminh
      */
     public function updateAction()
     {
-        /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
-        $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
+        /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
+        $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
 
         /** @var Mage_Core_Model_Session $sessionModel */
         $sessionModel = Mage::getSingleton('core/session');
 
         try {
             // Update cache
-            if ($promotionsCache->updateCache()) {
+            if ($promotionsStorage->updateCache()) {
                 $sessionModel->addSuccess(
                     $this->__(self::PROMOTIONS_FETCH_SUCCESS_MESSAGE)
                 );
