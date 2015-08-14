@@ -119,6 +119,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </cookie_lifetime>
+                        <generate translate="label">
+                            <button_label>Fetch new promotions</button_label>
+                            <frontend_model>rapidcampaign_promotions/promotional_button</frontend_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </generate>
                     </fields>
                 </rapidcampaign_general>
                 <rapidcampaign_developer translate="label" module="rapidcampaign_promotions">
