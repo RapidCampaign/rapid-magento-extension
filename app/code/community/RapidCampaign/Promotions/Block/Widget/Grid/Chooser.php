@@ -38,6 +38,8 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
             ->setSourceUrl($sourceUrl)
             ->setUniqId($uniqId);
 
+        $errorMessage = '';
+
         if ($element->getValue()) {
             /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
             $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
@@ -45,6 +47,7 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
             try {
                 $promotionModel = $promotionsStorage->getPromotionsModel();
             } catch (Exception $e) {
+                $errorMessage = $this->__($e->getMessage());
                 $promotionModel = $promotionsStorage->getCachedPromotionsModel();
             }
 
@@ -55,7 +58,14 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
             }
         }
 
-        $element->setData('after_element_html', $chooser->toHtml());
+        $chooserHtml = $chooser->toHtml();
+
+        if ($errorMessage) {
+            // Wrap error message
+            $chooserHtml .= '<div class="validation-advice">' . $errorMessage . '</div>';
+        }
+
+        $element->setData('after_element_html', $chooserHtml);
 
         return $element;
     }
@@ -91,11 +101,7 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
         /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
         $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
 
-        try {
-            $promotionModel = $promotionsStorage->getPromotionsModel();
-        } catch (Exception $e) {
-            $promotionModel = $promotionsStorage->getCachedPromotionsModel();
-        }
+        $promotionModel = $promotionsStorage->getCachedPromotionsModel();
 
         /** @var RapidCampaign_Promotions_Model_Resource_Promotions_Collection $collection */
         $collection = $promotionModel->getCollection();
