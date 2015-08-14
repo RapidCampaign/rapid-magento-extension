@@ -16,7 +16,16 @@ class RapidCampaign_Promotions_Block_Promotional_Logo extends Mage_Adminhtml_Blo
     {
         $originalData = $element->getOriginalData();
 
-        $this->setData('rapidcampaign_img_src', $originalData['img_src']);
+        $logoFilename = Mage::getDesign()
+            ->getFilename('images' . DS . 'rapidcampaign' . DS . 'rapidcampaign_logo.svg', array('_type' => 'skin'));
+
+        if (file_exists($logoFilename)) {
+            $this->setData(
+                'rapidcampaign_img_src',
+                $this->getSkinUrl('images' . DS . 'rapidcampaign' . DS . 'rapidcampaign_logo.svg')
+            );
+        }
+
         $this->setData('rapidcampaign_img_alt', $originalData['img_alt']);
 
         return $this->toHtml();
