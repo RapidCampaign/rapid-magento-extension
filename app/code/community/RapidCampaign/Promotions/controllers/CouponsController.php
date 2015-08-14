@@ -13,10 +13,11 @@ class RapidCampaign_Promotions_CouponsController extends Mage_Core_Controller_Fr
      */
     public function applyAction()
     {
-        $moduleEnabled = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/enable');
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
 
         // Module disabled
-        if (!$moduleEnabled) {
+        if (!$configHelper->extensionEnabled()) {
             return $this->_redirectReferer();
         }
 
@@ -37,10 +38,8 @@ class RapidCampaign_Promotions_CouponsController extends Mage_Core_Controller_Fr
             /** @var Mage_Core_Model_Cookie $cookieModel */
             $cookieModel = Mage::getSingleton('core/cookie');
 
-            $cookieLifetime = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/cookie_lifetime');
-
             // Set coupon cookie
-            $cookieModel->set('coupon_code', $couponCode, (int)$cookieLifetime, '/');
+            $cookieModel->set('coupon_code', $couponCode, (int)$configHelper->getCookieLifetime(), '/');
 
             $sessionModel->addSuccess(
                 $this->__('Coupon code "%s" was applied.', Mage::helper('core')->escapeHtml($couponCode))

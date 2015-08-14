@@ -16,10 +16,11 @@ class RapidCampaign_Promotions_Model_Observer
      */
     public function onCartProductAdded($observer)
     {
-        $moduleEnabled = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/enable');
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
 
         // Module disabled
-        if (!$moduleEnabled) {
+        if (!$configHelper->extensionEnabled()) {
             return;
         }
 
@@ -91,10 +92,11 @@ class RapidCampaign_Promotions_Model_Observer
             return $observer;
         }
 
-        $moduleEnabled = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/enable');
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
 
         // Module disabled
-        if (!$moduleEnabled) {
+        if (!$configHelper->extensionEnabled()) {
             return $observer;
         }
 
@@ -118,7 +120,7 @@ class RapidCampaign_Promotions_Model_Observer
         $customerId    = Mage::helper('core')->jsonEncode($orderModel->getCustomerId());
         $customerEmail = Mage::helper('core')->jsonEncode($orderModel->getCustomerEmail());
 
-        $analyticsScript = Mage::getStoreConfig('rapidcampaign_promotions/analytics_script/path');
+        $analyticsScript = $configHelper->getExternalAnalyticsScriptPath();
 
         // Add order variables to page
         $html .= <<<SCRIPT

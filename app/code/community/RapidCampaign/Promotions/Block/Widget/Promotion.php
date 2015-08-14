@@ -19,10 +19,11 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
      */
     protected function _toHtml()
     {
-        $moduleEnabled = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/enable');
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
 
         // Module disabled
-        if (!$moduleEnabled) {
+        if (!$configHelper->extensionEnabled()) {
             return '';
         }
 
@@ -63,16 +64,12 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             }
         }
 
-        $encryption = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/enable_encryption');
-
         // Parameter encryption enabled
-        if ($encryption) {
+        if ($configHelper->encryptionEnabled()) {
             $urlParams = $this->encryptParameters($urlParams);
         }
 
-        $iframeUrl = Mage::getStoreConfig('rapidcampaign_promotions/iframe/promotions_url')
-            . '?' . http_build_query($urlParams);
-
+        $iframeUrl    = $promotionData['embed_url'] . '?' . http_build_query($urlParams);
         $iframeWidth  = $promotionData['width'] ? : self::IFRAME_WIDTH;
         $iframeHeight = $promotionData['height'] ? : self::IFRAME_HEIGHT;
 
@@ -159,9 +156,10 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         /** @var RapidCampaign_Promotions_Helper_Encrypter $encrypter */
         $encrypter = Mage::helper('rapidcampaign_promotions/encrypter');
 
-        $encryptionKey = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/encryption_key');
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
 
-        $encrypter->setKey($encryptionKey);
+        $encrypter->setKey($configHelper->getEncryptionKey());
 
         try {
             array_walk($parameters, function (&$item, $key) use ($encrypter) {

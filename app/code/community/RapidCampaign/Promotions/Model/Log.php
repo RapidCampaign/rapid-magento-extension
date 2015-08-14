@@ -13,9 +13,10 @@ class RapidCampaign_Promotions_Model_Log
 
     public function log($message, $level = Zend_Log::DEBUG)
     {
-        $debugEnabled = Mage::getStoreConfig('rapidcampaign_developer/rapidcampaign_developer_group/enable_debug_logs');
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
 
-        if ($debugEnabled) {
+        if ($configHelper->debugLogsEnabled()) {
             Mage::log($message, $level, self::LOG_FILE, true);
         }
 

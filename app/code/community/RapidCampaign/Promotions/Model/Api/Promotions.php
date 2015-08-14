@@ -29,7 +29,10 @@ class RapidCampaign_Promotions_Model_Api_Promotions
         /** @var RapidCampaign_Promotions_Model_Log $logger */
         $logger = Mage::getSingleton('rapidcampaign_promotions/log');
 
-        $apiKey = Mage::getStoreConfig('rapidcampaign_general/rapidcampaign_general_group/apikey');
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
+
+        $apiKey = $configHelper->getApikey();
 
         if (!$apiKey) {
             $logger->log(self::ERROR_APIKEY_MISSING);
@@ -92,10 +95,11 @@ class RapidCampaign_Promotions_Model_Api_Promotions
      */
     protected function buildUrl($slug = null)
     {
-        $testMode = Mage::getStoreConfig('rapidcampaign_developer/rapidcampaign_developer_group/enable_test_mode');
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
 
-        $apiUrl = $testMode ? Mage::getStoreConfig('rapidcampaign_promotions/api_endpoint/test')
-            : Mage::getStoreConfig('rapidcampaign_promotions/api_endpoint/production');
+        $apiUrl = $configHelper->testModeEnabled() ? $configHelper->getTestEndpoint()
+            : $configHelper->getProductionEndpoint();
 
         $endpoint = $apiUrl . self::PROMOTIONS_ENDPOINT;
 

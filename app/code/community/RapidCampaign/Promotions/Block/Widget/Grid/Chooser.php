@@ -84,6 +84,7 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
         /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
         $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
 
+        /** @var RapidCampaign_Promotions_Model_Resource_Promotions_Collection $collection */
         $collection = $promotionsCache->getPromotionsModel()->getCollection();
 
         $this->setCollection($collection);
