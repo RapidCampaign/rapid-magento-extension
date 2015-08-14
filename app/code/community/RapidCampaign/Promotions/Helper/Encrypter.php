@@ -10,7 +10,7 @@ class RapidCampaign_Promotions_Helper_Encrypter extends Mage_Core_Helper_Abstrac
 {
     const IV_SIZE = 16;
 
-    protected $key = '1234567890123456';
+    protected $key;
     protected $cipher = 'AES-128-CBC';
 
     /**
@@ -44,6 +44,10 @@ class RapidCampaign_Promotions_Helper_Encrypter extends Mage_Core_Helper_Abstrac
      */
     public function encrypt($value)
     {
+        if (!$this->key) {
+            throw new Exception('Encryption key is not set');
+        }
+
         $iv    = openssl_random_pseudo_bytes(self::IV_SIZE);
         $value = openssl_encrypt(serialize($value), $this->cipher, $this->key, 0, $iv);
 
@@ -66,6 +70,10 @@ class RapidCampaign_Promotions_Helper_Encrypter extends Mage_Core_Helper_Abstrac
      */
     public function decrypt($payload)
     {
+        if (!$this->key) {
+            throw new Exception('Encryption key is not set');
+        }
+
         $payload = json_decode(base64_decode($payload), true);
 
         // If the payload is not valid JSON or does not have the proper keys set we will
