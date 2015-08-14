@@ -1,6 +1,6 @@
 <?php
 /**
- * RapidCampaign Link Block
+ * RapidCampaign Button Block
  *
  * @category    RapidCampaign
  * @package     RapidCampaign_Promotions
