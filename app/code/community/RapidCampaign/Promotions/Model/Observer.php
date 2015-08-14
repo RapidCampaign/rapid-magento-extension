@@ -80,7 +80,7 @@ class RapidCampaign_Promotions_Model_Observer
      */
     public function onBlockToHtml($observer)
     {
-        /* @var $block Mage_Core_Block_Abstract */
+        /** @var $block Mage_Core_Block_Abstract */
         $block = $observer->getBlock();
 
         if (!$block instanceof Mage_Checkout_Block_Onepage_Success) {

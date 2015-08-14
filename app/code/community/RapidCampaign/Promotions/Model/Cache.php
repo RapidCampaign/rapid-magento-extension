@@ -87,6 +87,12 @@ class RapidCampaign_Promotions_Model_Cache
 
         // Insert and update rest promotions
         foreach ($promotions as $promotion) {
+            $promotion['campaign_template_name'] = '';
+
+            if (is_array($promotion['campaign_template']) && isset($promotion['campaign_template']['name'])) {
+                $promotion['campaign_template_name'] = $promotion['campaign_template']['name'];
+            }
+
             $model = $collection->getItemById($promotion['slug']);
 
             if ($model) {
