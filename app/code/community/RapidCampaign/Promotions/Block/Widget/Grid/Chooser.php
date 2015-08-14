@@ -41,7 +41,14 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
         if ($element->getValue()) {
             /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
             $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
-            $promotion = $promotionsCache->getPromotionsModel()->load($element->getValue());
+
+            try {
+                $promotionModel = $promotionsCache->getPromotionsModel();
+            } catch (Exception $e) {
+                $promotionModel = Mage::getModel('rapidcampaign_promotions/promotions');
+            }
+
+            $promotion = $promotionModel->load($element->getValue());
 
             if ($promotion->getId()) {
                 $chooser->setLabel($promotion->getName());
@@ -84,8 +91,14 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
         /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
         $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
 
+        try {
+            $promotionModel = $promotionsCache->getPromotionsModel();
+        } catch (Exception $e) {
+            $promotionModel = Mage::getModel('rapidcampaign_promotions/promotions');
+        }
+
         /** @var RapidCampaign_Promotions_Model_Resource_Promotions_Collection $collection */
-        $collection = $promotionsCache->getPromotionsModel()->getCollection();
+        $collection = $promotionModel->getCollection();
 
         $this->setCollection($collection);
 

@@ -14,6 +14,7 @@ class RapidCampaign_Promotions_Model_Cache
 
     /**
      * @return RapidCampaign_Promotions_Model_Promotions
+     * @throws Exception
      */
     public function getPromotionsModel()
     {
@@ -49,8 +50,9 @@ class RapidCampaign_Promotions_Model_Cache
      * Update promotions cache
      *
      * @return bool
+     * @throws Exception
      */
-    protected function updateCache()
+    public function updateCache()
     {
         /** @var RapidCampaign_Promotions_Model_Api_Promotions $promotionsClient */
         $promotionsClient = Mage::getSingleton('rapidcampaign_promotions/api_promotions');
@@ -58,8 +60,7 @@ class RapidCampaign_Promotions_Model_Cache
         try {
             $promotions = $promotionsClient->getPromotions();
         } catch (Exception $e) {
-            // TODO: Should we inform user about fetching promotions error?
-            return false;
+            throw $e;
         }
 
         /** @var RapidCampaign_Promotions_Model_Resource_Promotions_Collection $collection */
