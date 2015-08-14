@@ -8,7 +8,7 @@
  */
 ?>
 <?php $_element = $this->getElement() ?>
-<div class="rule-tree fieldset-nowrap">
+<div class="rule-tree">
     <fieldset id="<?php echo $_element->getHtmlId() ?>" <?php echo $_element->serialize(array('class')) ?>>
     <?php if ($_element->getComment()): ?>
         <p class="comment"><?php echo $this->escapeHtml($_element->getComment()) ?></p>

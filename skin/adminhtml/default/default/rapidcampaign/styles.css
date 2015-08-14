@@ -1,4 +1,4 @@
-.fieldset-nowrap {
-    border: none !important;
-    padding: 0 !important;
+fieldset.fieldset-nowrap {
+    border: none;
+    padding: 0;
 }
