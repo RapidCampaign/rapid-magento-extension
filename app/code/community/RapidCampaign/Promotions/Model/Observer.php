@@ -140,4 +140,15 @@ SCRIPT;
 
         return $observer;
     }
+
+    /**
+     * Cron job for promotions update
+     */
+    public function cron()
+    {
+        /** @var RapidCampaign_Promotions_Model_Cache $promotionsCache */
+        $promotionsCache = Mage::getModel('rapidcampaign_promotions/cache');
+
+        $promotionsCache->updateCache();
+    }
 }
