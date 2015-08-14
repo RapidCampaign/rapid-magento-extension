@@ -9,29 +9,23 @@
  */
 -->
 <config>
-    <tabs>
-        <rapidcampaign_promotions translate="label" module="rapidcampaign_promotions">
-            <label>RapidCampaign</label>
-        </rapidcampaign_promotions>
-    </tabs>
     <sections>
-        <rapidcampaign_promotional translate="label" module="rapidcampaign_promotions">
-            <label>Promotional Content</label>
-            <tab>rapidcampaign_promotions</tab>
+        <rapidcampaign_promotions translate="label" module="rapidcampaign_promotions">
+            <label>Rapid Campaign</label>
+            <tab>sales</tab>
             <frontend_type>text</frontend_type>
-            <sort_order>10</sort_order>
+            <sort_order>1000</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
-                <rapidcampaign_promotional_group translate="label" module="rapidcampaign_promotions">
+                <rapidcampaign_promotional translate="label" module="rapidcampaign_promotions">
                     <label>Promotional Content</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <expanded>1</expanded>
                     <fields>
                         <logo translate="label">
                             <img_src>http://rapidcampaign.com/images/7efc1a33.header-logo.svg</img_src>
@@ -60,26 +54,14 @@
                             <show_in_store>1</show_in_store>
                         </link>
                     </fields>
-                </rapidcampaign_promotional_group>
-            </groups>
-        </rapidcampaign_promotional>
-        <rapidcampaign_general translate="label" module="rapidcampaign_promotions">
-            <label>General Settings</label>
-            <tab>rapidcampaign_promotions</tab>
-            <frontend_type>text</frontend_type>
-            <sort_order>20</sort_order>
-            <show_in_default>1</show_in_default>
-            <show_in_website>1</show_in_website>
-            <show_in_store>1</show_in_store>
-            <groups>
-                <rapidcampaign_general_group translate="label" module="rapidcampaign_promotions">
+                </rapidcampaign_promotional>
+                <rapidcampaign_general translate="label" module="rapidcampaign_promotions">
                     <label>RapidCampaign Settings</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>10</sort_order>
+                    <sort_order>20</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <expanded>1</expanded>
                     <fields>
                         <enable translate="label">
                             <label>Enable</label>
@@ -139,26 +121,14 @@
                             <show_in_store>1</show_in_store>
                         </cookie_lifetime>
                     </fields>
-                </rapidcampaign_general_group>
-            </groups>
-        </rapidcampaign_general>
-        <rapidcampaign_developer translate="label" module="rapidcampaign_promotions">
-            <label>Developer Settings</label>
-            <tab>rapidcampaign_promotions</tab>
-            <frontend_type>text</frontend_type>
-            <sort_order>30</sort_order>
-            <show_in_default>1</show_in_default>
-            <show_in_website>1</show_in_website>
-            <show_in_store>1</show_in_store>
-            <groups>
-                <rapidcampaign_developer_group translate="label" module="rapidcampaign_promotions">
+                </rapidcampaign_general>
+                <rapidcampaign_developer translate="label" module="rapidcampaign_promotions">
                     <label>Developer Settings</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>10</sort_order>
+                    <sort_order>30</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <expanded>1</expanded>
                     <fields>
                         <enable_test_mode translate="label comment">
                             <label>Enable Test Mode</label>
@@ -181,8 +151,8 @@
                             <show_in_store>1</show_in_store>
                         </enable_debug_logs>
                     </fields>
-                </rapidcampaign_developer_group>
+                </rapidcampaign_developer>
             </groups>
-        </rapidcampaign_developer>
+        </rapidcampaign_promotions>
     </sections>
 </config>

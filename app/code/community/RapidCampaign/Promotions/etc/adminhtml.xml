@@ -17,15 +17,9 @@
                         <children>
                             <config>
                                 <children>
-                                    <rapidcampaign_promotional translate="title">
-                                        <title>Promotional Content</title>
-                                    </rapidcampaign_promotional>
-                                    <rapidcampaign_general translate="title">
-                                        <title>General Settings</title>
-                                    </rapidcampaign_general>
-                                    <rapidcampaign_developer translate="title">
-                                        <title>Developer Settings</title>
-                                    </rapidcampaign_developer>
+                                    <rapidcampaign_promotions translate="title">
+                                        <title>RapidCampaign</title>
+                                    </rapidcampaign_promotions>
                                 </children>
                             </config>
                         </children>

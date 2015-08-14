@@ -119,31 +119,24 @@
     </phpunit>
     <default>
         <rapidcampaign_promotions>
-            <api_endpoint>
-                <production>http://api.rapidcampaign.com</production>
-                <test>http://api.dev.rapidcampaign.com</test>
-            </api_endpoint>
-            <iframe>
-                <promotions_url>https://promotions.rapidcampaign.com</promotions_url>
-            </iframe>
-            <analytics_script>
-                <path>https://analytics.rapidcampaign.com/analytics.js</path>
-            </analytics_script>
-        </rapidcampaign_promotions>
-        <rapidcampaign_general>
-            <rapidcampaign_general_group>
+            <rapidcampaign_general>
                 <enable>1</enable>
                 <enable_encryption>1</enable_encryption>
                 <encryption_key>ixmc1mnuciw2jyv4</encryption_key>
                 <enable_analytics>1</enable_analytics>
                 <cookie_lifetime>2592000</cookie_lifetime>
-            </rapidcampaign_general_group>
-        </rapidcampaign_general>
-        <rapidcampaign_developer>
-            <rapidcampaign_developer_group>
+            </rapidcampaign_general>
+            <rapidcampaign_developer>
                 <enable_test_mode>1</enable_test_mode>
                 <enable_debug_logs>1</enable_debug_logs>
-            </rapidcampaign_developer_group>
-        </rapidcampaign_developer>
+            </rapidcampaign_developer>
+            <api_endpoint>
+                <production>http://api.rapidcampaign.com</production>
+                <test>http://api.dev.rapidcampaign.com</test>
+            </api_endpoint>
+            <analytics_script>
+                <path>https://analytics.rapidcampaign.com/analytics.js</path>
+            </analytics_script>
+        </rapidcampaign_promotions>
     </default>
 </config>

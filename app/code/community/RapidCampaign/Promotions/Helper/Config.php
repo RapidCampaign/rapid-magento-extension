@@ -9,16 +9,16 @@
 class RapidCampaign_Promotions_Helper_Config extends Mage_Core_Helper_Abstract
 {
     // General settings
-    const XPATH_ENABLE = 'rapidcampaign_general/rapidcampaign_general_group/enable';
-    const XPATH_APIKEY = 'rapidcampaign_general/rapidcampaign_general_group/apikey';
-    const XPATH_ENABLE_ENCRYPTION = 'rapidcampaign_general/rapidcampaign_general_group/enable_encryption';
-    const XPATH_ENCRYPTION_KEY = 'rapidcampaign_general/rapidcampaign_general_group/encryption_key';
-    const XPATH_ENABLE_ANALYTICS = 'rapidcampaign_general/rapidcampaign_general_group/enable_analytics';
-    const XPATH_COOKIE_LIFETIME = 'rapidcampaign_general/rapidcampaign_general_group/cookie_lifetime';
+    const XPATH_ENABLE = 'rapidcampaign_promotions/rapidcampaign_general/enable';
+    const XPATH_APIKEY = 'rapidcampaign_promotions/rapidcampaign_general/apikey';
+    const XPATH_ENABLE_ENCRYPTION = 'rapidcampaign_promotions/rapidcampaign_general/enable_encryption';
+    const XPATH_ENCRYPTION_KEY = 'rapidcampaign_promotions/rapidcampaign_general/encryption_key';
+    const XPATH_ENABLE_ANALYTICS = 'rapidcampaign_promotions/rapidcampaign_general/enable_analytics';
+    const XPATH_COOKIE_LIFETIME = 'rapidcampaign_promotions/rapidcampaign_general/cookie_lifetime';
 
     // Developer settings
-    const XPATH_ENABLE_TEST_MODE = 'rapidcampaign_developer/rapidcampaign_developer_group/enable_test_mode';
-    const XPATH_ENABLE_DEBUG_LOGS = 'rapidcampaign_developer/rapidcampaign_developer_group/enable_debug_logs';
+    const XPATH_ENABLE_TEST_MODE = 'rapidcampaign_promotions/rapidcampaign_developer/enable_test_mode';
+    const XPATH_ENABLE_DEBUG_LOGS = 'rapidcampaign_promotions/rapidcampaign_developer/enable_debug_logs';
 
     // Custom config
     const XPATH_API_PRODUCTION = 'rapidcampaign_promotions/api_endpoint/production';
