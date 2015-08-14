@@ -117,16 +117,16 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
             'index'     => 'locale'
         ));
 
-        $this->addColumn('width', array(
-            'header'    => Mage::helper('rapidcampaign_promotions')->__('Promotion Width'),
+        $this->addColumn('campaign_template_name', array(
+            'header'    => Mage::helper('rapidcampaign_promotions')->__('Campaign Template Name'),
             'align'     => 'left',
-            'index'     => 'width'
+            'index'     => 'campaign_template_name'
         ));
 
-        $this->addColumn('height', array(
-            'header'    => Mage::helper('rapidcampaign_promotions')->__('Promotion Height'),
+        $this->addColumn('promotion_category', array(
+            'header'    => Mage::helper('rapidcampaign_promotions')->__('Promotion Category'),
             'align'     => 'left',
-            'index'     => 'height'
+            'index'     => 'promotion_category'
         ));
 
         return parent::_prepareColumns();
