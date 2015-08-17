@@ -40,17 +40,17 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
 
         $errorMessage = '';
 
+        /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
+        $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
+
+        try {
+            $promotionModel = $promotionsStorage->getPromotionsModel();
+        } catch (Exception $e) {
+            $errorMessage = $this->__($e->getMessage());
+            $promotionModel = $promotionsStorage->getCachedPromotionsModel();
+        }
+
         if ($element->getValue()) {
-            /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
-            $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
-
-            try {
-                $promotionModel = $promotionsStorage->getPromotionsModel();
-            } catch (Exception $e) {
-                $errorMessage = $this->__($e->getMessage());
-                $promotionModel = $promotionsStorage->getCachedPromotionsModel();
-            }
-
             $promotion = $promotionModel->load($element->getValue());
 
             if ($promotion->getId()) {
