@@ -13,7 +13,7 @@
         <rapidcampaign_promotions_widget_holepunch>
             <block>rapidcampaign_promotions/widget_promotion</block>
             <placeholder>rapidcampaign_widget_holepunch</placeholder>
-            <container>RapidCampaign_Promotions_Model_Fpc_Placeholder</container>
+            <container>rapidcampaign_promotions/fpc_placeholder</container>
         </rapidcampaign_promotions_widget_holepunch>
     </placeholders>
 </config>
