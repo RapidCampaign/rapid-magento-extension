@@ -27,6 +27,15 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             return '';
         }
 
+        if (Mage::getEdition() === Mage::EDITION_ENTERPRISE) {
+            // Recreate the widget parameter cache on FPC cleared or just created
+            if (!$this->getFullPageCacheEnvironment() && $this->getUniqueId()) {
+                $id = RapidCampaign_Promotions_Model_Fpc_Placeholder::CACHE_PREFIX . $this->getUniqueId() . '_params';
+
+                Enterprise_PageCache_Model_Cache::getCacheInstance()->save(serialize($this->getData()), $id);
+            }
+        }
+
         // The rules not valid
         if (!$this->validateRules()) {
             return '';
@@ -177,5 +186,21 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         }
 
         return $parameters;
+    }
+
+    /**
+     * Get cache key informative items
+     *
+     * @return array
+     */
+    public function getCacheKeyInfo()
+    {
+        $info = parent::getCacheKeyInfo();
+
+        if ($id = $this->getData('unique_id')) {
+            $info['unique_id'] = (string)$id;
+        }
+
+        return $info;
     }
 }
