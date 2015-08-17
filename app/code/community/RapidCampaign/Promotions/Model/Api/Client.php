@@ -14,7 +14,7 @@ class RapidCampaign_Promotions_Model_Api_Client
      *
      * @param string $endpoint
      * @param string $apiKey
-     * @return Zend_Http_Response
+     * @return Varien_Object
      * @throws Exception
      * @throws Zend_Http_Client_Exception
      */
@@ -30,13 +30,29 @@ class RapidCampaign_Promotions_Model_Api_Client
 
         $response = $client->request();
 
+        $responseObject = new Varien_Object();
+        $responseObject->setResponse($response);
+
+        // Magento 1.7 compatibility fix: chuncked body is already decoded, but header is not deleted
+        if (strtolower($response->getHeader('transfer-encoding')) === 'chunked') {
+            try {
+                $body = $response->getBody();
+            } catch (Zend_Http_Exception $e) {
+                $body = $response->getRawBody();
+            }
+        } else {
+            $body = $response->getBody();
+        }
+
+        $responseObject->setBody($body);
+
         /** @var RapidCampaign_Promotions_Model_Log $logger */
         $logger = Mage::getSingleton('rapidcampaign_promotions/log');
 
         // Log API communication
         $logger->log('Request: ' . $endpoint . "\n\n" . $client->getHeadersAsString() . "\n" . $client->getBody() .
-            "\n" . $response->getHeadersAsString() . "\n" . $response->getBody() . "\n");
+            "\n" . $response->getHeadersAsString() . "\n" . $responseObject->getBody() . "\n");
 
-        return $response;
+        return $responseObject;
     }
 }

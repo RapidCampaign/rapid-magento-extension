@@ -47,15 +47,18 @@ class RapidCampaign_Promotions_Model_Api_Promotions
 
         for ($i = 0; $i < self::MAX_ATTEMPTS; $i++) {
             try {
-                $response = $client->performHTTPRequest($endpoint, $apiKey);
+                $responseObject = $client->performHTTPRequest($endpoint, $apiKey);
             } catch (Exception $e) {
                 $logger->log($e->getMessage(), Zend_Log::CRIT);
                 // Rethrow exception
                 throw $e;
             }
 
+            /** @var Zend_Http_Response $response */
+            $response = $responseObject->getResponse();
+
             if ($response->isSuccessful()) {
-                $body = $response->getBody();
+                $body = $responseObject->getBody();
                 // Make sure response is valid json
                 try {
                     return Mage::helper('core')->jsonDecode($body);

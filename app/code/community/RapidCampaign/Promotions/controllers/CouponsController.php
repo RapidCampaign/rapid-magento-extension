@@ -23,7 +23,14 @@ class RapidCampaign_Promotions_CouponsController extends Mage_Core_Controller_Fr
 
         $couponCode = (string) $this->getRequest()->getParam('coupon');
 
-        if (!strlen($couponCode) || strlen($couponCode) > Mage_Checkout_Helper_Cart::COUPON_CODE_MAX_LENGTH) {
+        $maxCouponLength = 255;
+
+        // Magento 1.7 compatibility fix
+        if (defined('Mage_Checkout_Helper_Cart::COUPON_CODE_MAX_LENGTH')) {
+            $maxCouponLength = Mage_Checkout_Helper_Cart::COUPON_CODE_MAX_LENGTH;
+        }
+
+        if (!strlen($couponCode) || strlen($couponCode) > $maxCouponLength) {
             return $this->_redirectReferer();
         }
 
