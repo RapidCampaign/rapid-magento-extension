@@ -41,10 +41,14 @@ class RapidCampaign_Promotions_Test_Model_Api_Promotions extends EcomDev_PHPUnit
      */
     protected function registerApiClientStub($httpCode, $body)
     {
+        $responseObject = new Varien_Object();
+        $responseObject->setResponse(new Zend_Http_Response($httpCode, array(), $body));
+        $responseObject->setBody($body);
+
         $apiClientModelMock = $this->getModelMock('rapidcampaign_promotions/api_client', array('performHTTPRequest'));
         $apiClientModelMock->expects($this->any())
             ->method('performHTTPRequest')
-            ->will($this->returnValue(new Zend_Http_Response($httpCode, array(), $body)));
+            ->will($this->returnValue($responseObject));
 
         if ($httpCode == 0) {
             $apiClientModelMock->method('performHTTPRequest')
