@@ -131,14 +131,8 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
             'index'     => 'name',
         ));
 
-        $this->addColumn('locale', array(
-            'header'    => Mage::helper('rapidcampaign_promotions')->__('Promotion Locale'),
-            'align'     => 'left',
-            'index'     => 'locale'
-        ));
-
         $this->addColumn('campaign_template_name', array(
-            'header'    => Mage::helper('rapidcampaign_promotions')->__('Campaign Template Name'),
+            'header'    => Mage::helper('rapidcampaign_promotions')->__('Promotion Type'),
             'align'     => 'left',
             'index'     => 'campaign_template_name'
         ));
