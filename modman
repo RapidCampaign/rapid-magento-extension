@@ -1,4 +1,6 @@
 app/code/community/RapidCampaign/Promotions app/code/community/RapidCampaign/Promotions
+app/design/adminhtml/default/default/layout/rapidcampaign.xml app/design/adminhtml/default/default/layout/rapidcampaign.xml
+app/design/adminhtml/default/default/template/rapidcampaign app/design/adminhtml/default/default/template/rapidcampaign
 app/etc/modules/RapidCampaign_Promotions.xml app/etc/modules/RapidCampaign_Promotions.xml
 skin/adminhtml/default/default/rapidcampaign skin/adminhtml/default/default/rapidcampaign
 skin/adminhtml/default/default/images/rapidcampaign skin/adminhtml/default/default/images/rapidcampaign
