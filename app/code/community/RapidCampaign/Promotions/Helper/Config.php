@@ -10,6 +10,7 @@ class RapidCampaign_Promotions_Helper_Config extends Mage_Core_Helper_Abstract
 {
     // General settings
     const XPATH_ENABLE = 'rapidcampaign_promotions/rapidcampaign_general/enable';
+    const XPATH_MERCHANT_ID = 'rapidcampaign_promotions/rapidcampaign_general/merchant_id';
     const XPATH_APIKEY = 'rapidcampaign_promotions/rapidcampaign_general/apikey';
     const XPATH_ENABLE_ENCRYPTION = 'rapidcampaign_promotions/rapidcampaign_general/enable_encryption';
     const XPATH_ENCRYPTION_KEY = 'rapidcampaign_promotions/rapidcampaign_general/encryption_key';
@@ -23,7 +24,6 @@ class RapidCampaign_Promotions_Helper_Config extends Mage_Core_Helper_Abstract
     // Custom config
     const XPATH_API_PRODUCTION = 'rapidcampaign_promotions/api_endpoint/production';
     const XPATH_API_TEST = 'rapidcampaign_promotions/api_endpoint/test';
-    const XPATH_ANALYTICS_SCRIPT = 'rapidcampaign_promotions/analytics_script/path';
 
     /**
      * Current scope (store Id)
@@ -52,6 +52,14 @@ class RapidCampaign_Promotions_Helper_Config extends Mage_Core_Helper_Abstract
     public function extensionEnabled()
     {
         return Mage::getStoreConfigFlag(self::XPATH_ENABLE, $this->getStoreId());
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantId()
+    {
+        return Mage::getStoreConfig(self::XPATH_MERCHANT_ID, $this->getStoreId());
     }
 
     /**
@@ -124,13 +132,5 @@ class RapidCampaign_Promotions_Helper_Config extends Mage_Core_Helper_Abstract
     public function getTestEndpoint()
     {
         return Mage::getStoreConfig(self::XPATH_API_TEST, $this->getStoreId());
-    }
-
-    /**
-     * @return string
-     */
-    public function getExternalAnalyticsScriptPath()
-    {
-        return Mage::getStoreConfig(self::XPATH_ANALYTICS_SCRIPT, $this->getStoreId());
     }
 }
