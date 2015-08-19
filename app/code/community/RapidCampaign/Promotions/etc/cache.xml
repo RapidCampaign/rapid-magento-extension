@@ -15,5 +15,10 @@
             <placeholder>rapidcampaign_widget_holepunch</placeholder>
             <container>rapidcampaign_promotions/fpc_placeholder</container>
         </rapidcampaign_promotions_widget_holepunch>
+        <rapidcampaign_promotions_analytics_base_holepunch>
+            <block>rapidcampaign_promotions/analytics_base</block>
+            <placeholder>rapidcampaign_analytics_base_holepunch</placeholder>
+            <container>rapidcampaign_promotions/fpc_analytics</container>
+        </rapidcampaign_promotions_analytics_base_holepunch>
     </placeholders>
 </config>
