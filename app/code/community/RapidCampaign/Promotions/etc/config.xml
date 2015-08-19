@@ -79,16 +79,13 @@
                 </args>
             </rapidcampaign>
         </routers>
-        <events>
-            <core_block_abstract_to_html_after>
-                <observers>
-                    <add_analytics_to_order_page>
-                        <class>rapidcampaign_promotions/observer</class>
-                        <method>onBlockToHtml</method>
-                    </add_analytics_to_order_page>
-                </observers>
-            </core_block_abstract_to_html_after>
-        </events>
+        <layout>
+            <updates>
+                <rapidcampaign_promotions>
+                    <file>rapidcampaign.xml</file>
+                </rapidcampaign_promotions>
+            </updates>
+        </layout>
     </frontend>
     <adminhtml>
         <layout>
@@ -134,9 +131,6 @@
                 <production>http://api.rapidcampaign.com</production>
                 <test>http://api.dev.rapidcampaign.com</test>
             </api_endpoint>
-            <analytics_script>
-                <path>https://analytics.rapidcampaign.com/analytics.js</path>
-            </analytics_script>
         </rapidcampaign_promotions>
     </default>
     <crontab>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="content">
+            <block type="rapidcampaign_promotions/analytics_base" name="rapidcampaign_analytics_base" />
+        </reference>
+    </default>
+    <checkout_cart_index>
+        <reference name="content">
+            <block type="rapidcampaign_promotions/analytics_cart" name="rapidcampaign_analytics_cart" />
+        </reference>
+    </checkout_cart_index>
+    <checkout_onepage_success>
+        <reference name="content">
+            <block type="rapidcampaign_promotions/analytics_checkout" name="rapidcampaign_analytics_checkout" />
+        </reference>
+    </checkout_onepage_success>
+</layout>
