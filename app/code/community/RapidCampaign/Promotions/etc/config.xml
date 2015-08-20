@@ -96,6 +96,14 @@
             </updates>
         </layout>
         <events>
+            <salesrule_rule_condition_combine>
+                <observers>
+                    <add_condition_to_sales_rule>
+                        <class>rapidcampaign_promotions/observer</class>
+                        <method>onConditionCombine</method>
+                    </add_condition_to_sales_rule>
+                </observers>
+            </salesrule_rule_condition_combine>
             <controller_action_predispatch>
                 <observers>
                     <build_widget_hook>

@@ -54,6 +54,8 @@ class RapidCampaign_Promotions_Block_Widget_Condition extends Mage_Adminhtml_Blo
 
         $form->setValues($salesRuleModel->getData());
 
+        Mage::register('rapidcampaign/widget/created', true, true);
+
         $html = $form->toHtml();
 
         if ($element->getNote()) {

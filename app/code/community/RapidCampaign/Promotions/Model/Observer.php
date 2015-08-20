@@ -74,6 +74,48 @@ class RapidCampaign_Promotions_Model_Observer
     }
 
     /**
+     * Hook SalesRule condition combine and add extra conditions
+     *
+     * @param Varien_Event_Observer $observer
+     * @return Varien_Event_Observer
+     */
+    public function onConditionCombine($observer)
+    {
+        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+        $configHelper = Mage::helper('rapidcampaign_promotions/config');
+
+        // Module disabled
+        if (!$configHelper->extensionEnabled()) {
+            return $observer;
+        }
+
+        if (!Mage::registry('rapidcampaign/widget/created')) {
+            return $observer;
+        }
+
+        /** @var RapidCampaign_Promotions_Model_Condition_Extra $extraCondition */
+        $extraCondition  = Mage::getModel('rapidcampaign_promotions/condition_extra');
+        $extraAttributes = $extraCondition->loadAttributeOptions()->getAttributeOption();
+
+        $attributes = array();
+        foreach ($extraAttributes as $code => $label) {
+            $attributes[] = array('value' => 'rapidcampaign_promotions/condition_extra|' . $code, 'label' => $label);
+        }
+
+        $additional = $observer->getAdditional();
+        $conditions = (array) $additional->getConditions();
+
+        $conditions = array_merge_recursive($conditions, $attributes);
+
+        $additional->setConditions($conditions);
+        $observer->setAdditional($additional);
+
+        Mage::unregister('rapidcampaign/widget/created');
+
+        return $observer;
+    }
+
+    /**
      * Cron job for promotions update
      */
     public function cron()
