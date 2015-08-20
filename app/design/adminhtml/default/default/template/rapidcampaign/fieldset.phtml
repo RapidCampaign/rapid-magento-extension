@@ -17,8 +17,17 @@
     </fieldset>
 </div>
 <script type="text/javascript">
-var <?php echo $_element->getHtmlId() ?> = new VarienRulesForm('<?php echo $_element->getHtmlId() ?>', '<?php echo $this->getNewChildUrl() ?>');
-<?php if ($_element->getReadonly()): ?>
-    <?php echo $_element->getHtmlId() ?>.setReadonly(true);
-<?php endif; ?>
+    (function() {
+        var rulesForm = document.createElement('script');
+        rulesForm.type = 'text/javascript';
+        var rulesFormInnerHtml = "var <?php echo $_element->getHtmlId() ?> = new VarienRulesForm('<?php echo $_element->getHtmlId() ?>', '<?php echo $this->getNewChildUrl() ?>');";
+
+        <?php if ($_element->getReadonly()): ?>
+        rulesFormInnerHtml += "<?php echo $_element->getHtmlId() ?>.setReadonly(true);";
+        <?php endif; ?>
+
+        rulesForm.innerHTML = rulesFormInnerHtml;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(rulesForm, s);
+    })();
 </script>
