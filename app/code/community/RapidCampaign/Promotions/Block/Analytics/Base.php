@@ -8,6 +8,9 @@
  */
 class RapidCampaign_Promotions_Block_Analytics_Base extends Mage_Core_Block_Template
 {
+    const API_URL      = '//assets.rpd.mobi/analytics.js';
+    const API_TEST_URL = '//assets-dev.rpd.mobi/analytics.js';
+
     /**
      * Prepare HTML content
      *
@@ -25,6 +28,12 @@ class RapidCampaign_Promotions_Block_Analytics_Base extends Mage_Core_Block_Temp
 
         $merchantId = Mage::helper('core')->jsonEncode($configHelper->getMerchantId());
 
+        $apiUrl = self::API_URL;
+        if ($configHelper->testModeEnabled()) {
+            $apiUrl = self::API_TEST_URL;
+        }
+
+
         $html = <<<SCRIPT
 <!-- RapidCampaign Analytics Begins -->
 <script type="text/javascript">
@@ -35,7 +44,7 @@ class RapidCampaign_Promotions_Block_Analytics_Base extends Mage_Core_Block_Temp
 
     (function() {
         var na = document.createElement('script'); na.type = 'text/javascript'; na.async = true;
-        na.src = '//analytics.rapidcampaign.com/na.js';
+        na.src = '{$apiUrl}';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(na,s);
     })();
 //]]></script>
