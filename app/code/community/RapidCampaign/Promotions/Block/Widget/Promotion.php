@@ -93,7 +93,7 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
 
         $embedScript  = $configHelper->testModeEnabled() ? self::IFRAME_EMBED_JS_TEST_URL : self::IFRAME_EMBED_JS_URL;
 
-        $iframeString = '<div id="_rc_iframe" style="width:' . $iframeWidth . 'px; height="' . $iframeHeight . 'px;" data-url="' . $iframeUrl . '"></div>';
+        $iframeString = '<div id="_rc_iframe" style="width:' . $iframeWidth . 'px; height=' . $iframeHeight . 'px;" data-url="' . $iframeUrl . '"></div>';
         $jsString = '<script type="text/javascript" src="' . $embedScript . '"></script>';
 
         return $iframeString . $jsString;
