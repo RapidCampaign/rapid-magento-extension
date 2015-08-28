@@ -9,8 +9,10 @@
 class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Template implements Mage_Widget_Block_Interface
 {
     // Default dimension
-    const IFRAME_WIDTH = 300;
-    const IFRAME_HEIGHT = 200;
+    const IFRAME_WIDTH   = 300;
+    const IFRAME_HEIGHT  = 200;
+    const IFRAME_EMBED_JS_URL      = '//assets.rpd.mobi/embed.js';
+    const IFRAME_EMBED_JS_TEST_URL = '//assets-dev.rpd.mobi/embed.js';
 
     /**
      * Render block HTML
@@ -89,7 +91,13 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         $iframeWidth  = $promotionData['width'] ? : self::IFRAME_WIDTH;
         $iframeHeight = $promotionData['height'] ? : self::IFRAME_HEIGHT;
 
-        return '<iframe width="' . $iframeWidth . '" height="' . $iframeHeight . '" src="' . $iframeUrl . '"></iframe>';
+        $embedScript  = $configHelper->testModeEnabled() ? self::IFRAME_EMBED_JS_TEST_URL : self::IFRAME_EMBED_JS_URL;
+
+        $iframeString = '<div id="_rc_iframe" style="width:' . $iframeWidth . 'px; height="' . $iframeHeight . 'px;" data-url="' . $iframeUrl . '"></div>';
+        $jsString = '<script type="text/javascript" src="' . $embedScript . '"></script>';
+
+        return $iframeString . $jsString;
+
     }
 
     /**
