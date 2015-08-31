@@ -1,6 +1,6 @@
 <?php
 /**
- * RapidCampaign Base Analytics Block
+ * RapidCampaign Cart Analytics Block
  *
  * @category    RapidCampaign
  * @package     RapidCampaign_Promotions

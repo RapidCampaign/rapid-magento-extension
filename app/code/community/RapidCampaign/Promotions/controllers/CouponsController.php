@@ -40,11 +40,11 @@ class RapidCampaign_Promotions_CouponsController extends Mage_Core_Controller_Fr
         /** @var Mage_Checkout_Model_Cart $cartModel */
         $cartModel = Mage::getSingleton('checkout/cart');
 
+        /** @var Mage_Core_Model_Cookie $cookieModel */
+        $cookieModel = Mage::getSingleton('core/cookie');
+
         // If cart is empty
         if (!$cartModel->getItemsCount()) {
-            /** @var Mage_Core_Model_Cookie $cookieModel */
-            $cookieModel = Mage::getSingleton('core/cookie');
-
             // Set coupon cookie
             $cookieModel->set('coupon_code', $couponCode, (int)$configHelper->getCookieLifetime(), '/');
 
@@ -65,6 +65,11 @@ class RapidCampaign_Promotions_CouponsController extends Mage_Core_Controller_Fr
                 $sessionModel->addSuccess(
                     $this->__('Coupon code "%s" was applied.', Mage::helper('core')->escapeHtml($couponCode))
                 );
+
+                if (!$configHelper->isFullAnalytics()) {
+                    // Set session cookie for rapidcampaign assisted order
+                    $cookieModel->set('rc_coupon_applied', true, 0, '/');
+                }
             } else {
                 $sessionModel->addError(
                     $this->__('Coupon code "%s" is not valid.', Mage::helper('core')->escapeHtml($couponCode))

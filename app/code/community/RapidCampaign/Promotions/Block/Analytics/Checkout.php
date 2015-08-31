@@ -1,6 +1,6 @@
 <?php
 /**
- * RapidCampaign Base Analytics Block
+ * RapidCampaign Checkout Analytics Block
  *
  * @category    RapidCampaign
  * @package     RapidCampaign_Promotions
@@ -21,6 +21,17 @@ class RapidCampaign_Promotions_Block_Analytics_Checkout extends Mage_Core_Block_
         // Module disabled or Merchant ID is not set
         if (!$configHelper->extensionEnabled() || !$configHelper->getMerchantId()) {
             return '';
+        }
+
+        if (!$configHelper->isFullAnalytics()) {
+            /** @var Mage_Core_Model_Cookie $cookieModel */
+            $cookieModel = Mage::getSingleton('core/cookie');
+
+            if (!$cookieModel->get('rc_coupon_applied')) {
+                return '';
+            }
+
+            $cookieModel->delete('rc_coupon_applied');
         }
 
         /** @var Mage_Checkout_Model_Session $checkoutModel */

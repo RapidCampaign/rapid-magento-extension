@@ -44,6 +44,11 @@ class RapidCampaign_Promotions_Model_Observer
 
         // Remove cookie
         $cookieModel->delete('coupon_code');
+
+        if (!$configHelper->isFullAnalytics() && $coupon == $cartModel->getQuote()->getCouponCode()) {
+            // Set session cookie for rapidcampaign assisted order
+            $cookieModel->set('rc_coupon_applied', true, 0, '/');
+        }
     }
 
     /**
