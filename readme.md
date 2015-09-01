@@ -53,7 +53,7 @@ There is a cron task defined in `config.xml` to re-fetch the promotions daily. S
 
 The crux of the functionality comes from the widget that has been defined in `etc/widget.xml` and functionality created in `Block/Widget/Promotion.php` which allows a store owner to choose a promotion and targeting rules.
 
-The targeting rules re-uses components from sales conditions and then stores it on the widget by base_64 encoding. 
+The targeting rules re-uses components from sales conditions and then stores it on the widget by base_64 encoding. There is an observer that is used to support the condition combining and serializing on the post. 
 
 To select a promotion a separate window is needed and provided by `controllers/Adminhtml/ChooserController.php` and `Block/Widget/Grid/Chooser.php`.
 
