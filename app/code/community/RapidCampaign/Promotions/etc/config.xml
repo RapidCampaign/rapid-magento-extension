@@ -99,6 +99,7 @@
             <salesrule_rule_condition_combine>
                 <observers>
                     <add_condition_to_sales_rule>
+                        <type>singleton</type>
                         <class>rapidcampaign_promotions/observer</class>
                         <method>onConditionCombine</method>
                     </add_condition_to_sales_rule>
