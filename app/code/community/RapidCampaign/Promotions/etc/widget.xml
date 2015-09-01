@@ -33,7 +33,7 @@
             <conditions translate="label">
                 <required>1</required>
                 <visible>1</visible>
-                <description><![CDATA[Notes. Lorem ipsum dolor sit amet, consectetuer adipiscing elit]]></description>
+                <description><![CDATA[Restrict which customers see the promotion using the rule builder.]]></description>
                 <label>Targeting Conditions</label>
                 <type>rapidcampaign_promotions/widget_condition</type>
                 <sort_order>20</sort_order>
