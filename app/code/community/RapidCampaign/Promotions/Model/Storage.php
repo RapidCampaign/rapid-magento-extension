@@ -9,8 +9,8 @@
 
 class RapidCampaign_Promotions_Model_Storage
 {
-    // Cache API responses for 24h
-    const API_CACHE_TIME = 86400;
+    // Cache API responses for 15 minutes
+    const API_CACHE_TIME = 900;
 
     /**
      * @return RapidCampaign_Promotions_Model_Promotions
