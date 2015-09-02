@@ -119,15 +119,4 @@ class RapidCampaign_Promotions_Model_Observer
 
         return $observer;
     }
-
-    /**
-     * Cron job for promotions update
-     */
-    public function cron()
-    {
-        /** @var RapidCampaign_Promotions_Model_Storage $promotionsStorage */
-        $promotionsStorage = Mage::getModel('rapidcampaign_promotions/storage');
-
-        $promotionsStorage->updateCache();
-    }
 }
