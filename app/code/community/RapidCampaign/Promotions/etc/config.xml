@@ -133,8 +133,8 @@
                 <cookie_lifetime>2592000</cookie_lifetime>
             </rapidcampaign_general>
             <rapidcampaign_developer>
-                <enable_test_mode>1</enable_test_mode>
-                <enable_debug_logs>1</enable_debug_logs>
+                <enable_test_mode>0</enable_test_mode>
+                <enable_debug_logs>0</enable_debug_logs>
             </rapidcampaign_developer>
             <api_endpoint>
                 <production>http://api.rapidcampaign.com</production>
