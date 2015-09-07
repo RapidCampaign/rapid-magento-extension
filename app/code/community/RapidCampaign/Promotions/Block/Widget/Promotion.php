@@ -11,8 +11,11 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
     // Default dimension
     const IFRAME_WIDTH   = 300;
     const IFRAME_HEIGHT  = 200;
-    const IFRAME_EMBED_JS_URL      = '//assets.rpd.mobi/embed.js';
-    const IFRAME_EMBED_JS_TEST_URL = '//assets-dev.rpd.mobi/embed.js';
+    const IFRAME_JS_BASE_URL      = '//assets.rpd.mobi/';
+    const IFRAME_JS_TEST_BASE_URL = '//assets-dev.rpd.mobi/';
+    const IFRAME_SALES_EMBED      = 'sales/embed.js';
+    const IFRAME_MARKETING_EMBED  = 'marketing/embed.js';
+
 
     /**
      * Render block HTML
@@ -91,13 +94,25 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         $iframeWidth  = $promotionData['width'] ? : self::IFRAME_WIDTH;
         $iframeHeight = $promotionData['height'] ? : self::IFRAME_HEIGHT;
 
-        $embedScript  = $configHelper->testModeEnabled() ? self::IFRAME_EMBED_JS_TEST_URL : self::IFRAME_EMBED_JS_URL;
+        if ($configHelper->testModeEnabled()) {
+            $embedScript = self::IFRAME_JS_TEST_BASE_URL;
+        } else {
+            $embedScript = self::IFRAME_JS_BASE_URL;
+        }
 
-        $iframeString = '<div id="_rc_iframe" style="width:' . $iframeWidth . 'px; height=' . $iframeHeight . 'px;" data-url="' . $iframeUrl . '"></div>';
-        $jsString = '<script type="text/javascript" src="' . $embedScript . '"></script>';
+        if (preg_match('/sales/i', $promotionData['promotion_category'])) {
+            $embedScript .= self::IFRAME_SALES_EMBED;
+            $iframeString = sprintf('<div data-url="%s" data-width="%s" data-height="%s"></div>', $iframeUrl,
+                $iframeWidth, $iframeHeight);
+
+        } else {
+            $embedScript .= self::IFRAME_MARKETING_EMBED;
+            $iframeString = sprintf('<div data-url="%s"></div>', $iframeUrl);
+        }
+
+        $jsString = sprintf('<script type="text/javascript" src="%s"></script>', $embedScript);
 
         return $iframeString . $jsString;
-
     }
 
     /**
