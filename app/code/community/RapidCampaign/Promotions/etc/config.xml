@@ -142,16 +142,4 @@
             </api_endpoint>
         </rapidcampaign_promotions>
     </default>
-    <crontab>
-        <jobs>
-            <promotions_update>
-                <schedule>
-                    <cron_expr>0 0 * * *</cron_expr>
-                </schedule>
-                <run>
-                    <model>rapidcampaign_promotions/observer::cron</model>
-                </run>
-            </promotions_update>
-        </jobs>
-    </crontab>
 </config>
