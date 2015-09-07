@@ -102,12 +102,12 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
 
         if (preg_match('/sales/i', $promotionData['promotion_category'])) {
             $embedScript .= self::IFRAME_SALES_EMBED;
-            $iframeString = sprintf('<div data-url="%s" data-width="%s" data-height="%s"></div>', $iframeUrl,
+            $iframeString = sprintf('<div class="_rc_iframe" data-url="%s" data-width="%s" data-height="%s"></div>', $iframeUrl,
                 $iframeWidth, $iframeHeight);
 
         } else {
             $embedScript .= self::IFRAME_MARKETING_EMBED;
-            $iframeString = sprintf('<div data-url="%s"></div>', $iframeUrl);
+            $iframeString = sprintf('<div class="_rc_miframe" data-url="%s"></div>', $iframeUrl);
         }
 
         $jsString = sprintf('<script type="text/javascript" src="%s"></script>', $embedScript);
