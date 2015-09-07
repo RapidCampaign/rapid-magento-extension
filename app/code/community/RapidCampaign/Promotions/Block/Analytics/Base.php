@@ -49,6 +49,7 @@ class RapidCampaign_Promotions_Block_Analytics_Base extends Mage_Core_Block_Temp
     })();
 //]]></script>
 <!-- RapidCampaign Analytics Ends -->
+
 SCRIPT;
 
         return $html;
