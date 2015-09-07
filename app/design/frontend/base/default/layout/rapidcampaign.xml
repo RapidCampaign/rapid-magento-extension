@@ -10,7 +10,7 @@
 -->
 <layout version="0.1.0">
     <default>
-        <reference name="content">
+        <reference name="head">
             <block type="rapidcampaign_promotions/analytics_base" name="rapidcampaign_analytics_base" />
         </reference>
     </default>
