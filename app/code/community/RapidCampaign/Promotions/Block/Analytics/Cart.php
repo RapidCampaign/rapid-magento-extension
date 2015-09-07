@@ -81,6 +81,7 @@ var _naq = _naq || [];
 _naq.push(["_trackBasket"]);
 //]]></script>
 <!-- RapidCampaign Analytics Ends -->
+
 SCRIPT;
 
         return $html;

@@ -99,6 +99,7 @@ var _naq = _naq || [];
 _naq.push(['_trackTrans']);
 //]]></script>
 <!-- RapidCampaign Analytics Ends -->
+
 SCRIPT;
 
         return $html;
