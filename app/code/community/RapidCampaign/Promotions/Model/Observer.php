@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
  */
 
-class RapidCampaign_Promotions_Model_Observer
+class RapidCampaign_Promotions_Model_Observer extends Mage_Core_Model_Abstract
 {
     /**
      * Hook addProduct to apply coupon code if cookie exist
@@ -36,11 +36,27 @@ class RapidCampaign_Promotions_Model_Observer
         /** @var Mage_Checkout_Model_Cart $cartModel */
         $cartModel = Mage::getSingleton('checkout/cart');
 
-        // Apply coupon to cart
-        $cartModel->getQuote()
-            ->setCouponCode($coupon)
-            ->collectTotals()
-            ->save();
+        /** @var Mage_Checkout_Model_Session $session */
+        $session = Mage::getSingleton('checkout/session');
+
+        try {
+            // Apply coupon to cart
+            $cartModel->getQuote()
+                ->setCouponCode($coupon)
+                ->collectTotals()
+                ->save();
+
+            if (!$coupon != $cartModel->getQuote()->getCouponCode()) {
+                $session->addError(
+                    Mage::helper('core')->__('Coupon code "%s" is not valid.', Mage::helper('core')->escapeHtml($coupon))
+                );
+            }
+        } catch (Mage_Core_Exception $e) {
+            $session->addError($e->getMessage());
+        } catch (Exception $e) {
+            $session->addError(Mage::helper('core')->__('Cannot apply the coupon code.'));
+            Mage::logException($e);
+        }
 
         // Remove cookie
         $cookieModel->delete('coupon_code');
