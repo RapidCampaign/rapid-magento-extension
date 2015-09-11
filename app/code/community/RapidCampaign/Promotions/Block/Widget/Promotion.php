@@ -201,14 +201,12 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         $encrypter->setKey($configHelper->getEncryptionKey());
 
         try {
-            array_walk($parameters, function (&$item, $key) use ($encrypter) {
-                $item = $encrypter->encrypt($item);
-            });
+            $encryptedParameters = array('q' => $encrypter->encrypt(http_build_query($parameters)));
         } catch (Exception $e) {
             return $parameters;
         }
 
-        return $parameters;
+        return $encryptedParameters;
     }
 
     /**
