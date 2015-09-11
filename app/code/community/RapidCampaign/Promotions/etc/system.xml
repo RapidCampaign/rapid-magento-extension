@@ -102,7 +102,7 @@
                         <encryption_key translate="label comment">
                             <label>Encryption Key</label>
                             <frontend_type>text</frontend_type>
-                            <comment><![CDATA[Key used to encrypt information in iframe promotion URL]]></comment>
+                            <comment><![CDATA[Can be copied from RapidCampaign account area]]></comment>
                             <sort_order>50</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>

@@ -128,7 +128,6 @@
             <rapidcampaign_general>
                 <enable>1</enable>
                 <enable_encryption>1</enable_encryption>
-                <encryption_key>ixmc1mnuciw2jyv4</encryption_key>
                 <enable_analytics>1</enable_analytics>
                 <cookie_lifetime>2592000</cookie_lifetime>
             </rapidcampaign_general>
