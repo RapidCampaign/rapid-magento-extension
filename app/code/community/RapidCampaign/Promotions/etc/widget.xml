@@ -33,7 +33,7 @@
             <conditions translate="label">
                 <required>1</required>
                 <visible>1</visible>
-                <description><![CDATA[Restrict which customers see the promotion using the rule builder.]]></description>
+                <description><![CDATA[Restrict which customers see the promotion using the rule builder. For help see our <a target="_blank" href="http://support.rapidcampaign.com/customer/portal/articles/2122051-overview-to-magento-extension">support center</a>.]]></description>
                 <label>Targeting Conditions</label>
                 <type>rapidcampaign_promotions/widget_condition</type>
                 <sort_order>20</sort_order>
