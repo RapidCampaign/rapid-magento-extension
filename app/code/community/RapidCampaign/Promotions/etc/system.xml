@@ -52,6 +52,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </link>
+                        <help_link translate="label">
+                            <frontend_model>rapidcampaign_promotions/promotional_link</frontend_model>
+                            <href>http://support.rapidcampaign.com/customer/portal/articles/2122051-overview-to-magento-extension</href>
+                            <value>Support Center</value>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </help_link>
                     </fields>
                 </rapidcampaign_promotional>
                 <rapidcampaign_general translate="label" module="rapidcampaign_promotions">
