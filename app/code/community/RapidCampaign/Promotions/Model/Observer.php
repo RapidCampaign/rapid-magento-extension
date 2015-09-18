@@ -46,7 +46,7 @@ class RapidCampaign_Promotions_Model_Observer extends Mage_Core_Model_Abstract
                 ->collectTotals()
                 ->save();
 
-            if (!$coupon != $cartModel->getQuote()->getCouponCode()) {
+            if ($coupon != $cartModel->getQuote()->getCouponCode()) {
                 $session->addError(
                     Mage::helper('core')->__('Coupon code "%s" is not valid.', Mage::helper('core')->escapeHtml($coupon))
                 );
