@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<config>
+    <sections>
+        <rapidcampaign_promotions translate="label" module="rapidcampaign_promotions">
+            <label>RapidCampaign</label>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>299</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <rapidcampaign_promotional translate="label" module="rapidcampaign_promotions">
+                    <label>Promotional Content</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <logo translate="label">
+                            <img_alt>RapidCampaign</img_alt>
+                            <frontend_model>rapidcampaign_promotions/promotional_logo</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logo>
+                        <description translate="label">
+                            <description><![CDATA[Convert more visitors to customers with RapidCampaign smart promotions. Gamified promotions activate customers 10x better than static deals. Target and personalize the promotions based on shopping cart value, customer segment or other relevant attributes. Test which deals are best in driving the conversion up. RapidCampaign combines fun, smartness and your brand experience into an easy-to-use sales conversion tool.]]></description>
+                            <frontend_model>rapidcampaign_promotions/promotional_description</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description>
+                        <link translate="label">
+                            <frontend_model>rapidcampaign_promotions/promotional_link</frontend_model>
+                            <href>https://app.rapidcampaign.com/sign-up</href>
+                            <value>Get Started</value>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </link>
+                        <help_link translate="label">
+                            <frontend_model>rapidcampaign_promotions/promotional_link</frontend_model>
+                            <href>http://support.rapidcampaign.com/customer/portal/articles/2122051-overview-to-magento-extension</href>
+                            <value>Support Center</value>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </help_link>
+                    </fields>
+                </rapidcampaign_promotional>
+                <rapidcampaign_general translate="label" module="rapidcampaign_promotions">
+                    <label>RapidCampaign Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                        <merchant_id translate="label comment">
+                            <label>Merchant ID</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[This is used for analytics tracking]]></comment>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </merchant_id>
+                        <apikey translate="label comment">
+                            <label>API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Key used for API requests to fetch promotions from RapidCampaign]]></comment>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </apikey>
+                        <enable_encryption translate="label comment">
+                            <label>Enable Encryption</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment><![CDATA[Encrypt customer information in iframe promotion URL]]></comment>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_encryption>
+                        <encryption_key translate="label comment">
+                            <label>Encryption Key</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Can be copied from RapidCampaign account area]]></comment>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </encryption_key>
+                        <enable_analytics translate="label comment">
+                            <label>Enable Analytics</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>rapidcampaign_promotions/system_config_source_analytics</source_model>
+                            <comment><![CDATA[Analytics tracking on checkout. Full is for all customers, partial for only RapidCampaign assisted orders]]></comment>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_analytics>
+                        <cookie_lifetime translate="label comment">
+                            <label>Cookie Lifetime</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Time (in seconds), that discount code should be remembered for customers without cart.]]></comment>
+                            <validate>validate-digits</validate>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cookie_lifetime>
+                        <generate translate="label">
+                            <button_label>Fetch new promotions</button_label>
+                            <frontend_model>rapidcampaign_promotions/promotional_button</frontend_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </generate>
+                    </fields>
+                </rapidcampaign_general>
+                <rapidcampaign_developer translate="label" module="rapidcampaign_promotions">
+                    <label>Developer Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable_test_mode translate="label comment">
+                            <label>Enable Test Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment><![CDATA[Development API URL is used in test mode.]]></comment>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_test_mode>
+                        <enable_debug_logs translate="label comment">
+                            <label>Enable Debug Logs</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment><![CDATA[Write additional logs to var/log/rapidcampaign_debug.log]]></comment>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_debug_logs>
+                    </fields>
+                </rapidcampaign_developer>
+            </groups>
+        </rapidcampaign_promotions>
+    </sections>
+</config>

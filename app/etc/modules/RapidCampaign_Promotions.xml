@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<config>
+    <modules>
+        <RapidCampaign_Promotions>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Adminhtml />
+                <Mage_Widget />
+            </depends>
+        </RapidCampaign_Promotions>
+    </modules>
+</config>

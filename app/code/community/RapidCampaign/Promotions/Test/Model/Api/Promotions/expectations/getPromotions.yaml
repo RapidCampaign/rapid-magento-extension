@@ -1,0 +1,21 @@
+1-500:
+  throw: 'Exception'
+  result: false
+2-401:
+  throw: 'Exception'
+  result: false
+3-403:
+  throw: 'Exception'
+  result: false
+4-0:
+  throw: 'Exception'
+  result: false
+5-200:
+  throw: false
+  result: '[{"locale":"en_GB","slug":"a","name":"A example"},{"locale":"en_GB","slug":"b","name":"B example"},{"locale":"en_GB","slug":"c","name":"C example"}]'
+6-200:
+  throw: false
+  result: '{"locale":"en_GB","slug":"a","name":"A example"}'
+7-200:
+  throw: 'Exception'
+  result: false

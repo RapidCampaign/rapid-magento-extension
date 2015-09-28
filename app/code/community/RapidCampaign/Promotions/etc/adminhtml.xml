@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <rapidcampaign_promotions translate="title">
+                                        <title>RapidCampaign</title>
+                                    </rapidcampaign_promotions>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

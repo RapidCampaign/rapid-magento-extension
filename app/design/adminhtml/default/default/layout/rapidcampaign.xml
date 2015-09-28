@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<layout>
+    <default>
+        <reference name="head">
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+            <action method="addCss"><name>rapidcampaign/styles.css</name></action>
+        </reference>
+    </default>
+</layout>

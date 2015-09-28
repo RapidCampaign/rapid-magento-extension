@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * RapidCampaign
+ *
+ * @category    RapidCampaign
+ * @package     RapidCampaign_Promotions
+ * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
+ */
+-->
+<config>
+    <placeholders>
+        <rapidcampaign_promotions_widget_holepunch>
+            <block>rapidcampaign_promotions/widget_promotion</block>
+            <placeholder>rapidcampaign_widget_holepunch</placeholder>
+            <container>rapidcampaign_promotions/fpc_placeholder</container>
+        </rapidcampaign_promotions_widget_holepunch>
+        <rapidcampaign_promotions_analytics_base_holepunch>
+            <block>rapidcampaign_promotions/analytics_base</block>
+            <placeholder>rapidcampaign_analytics_base_holepunch</placeholder>
+            <container>rapidcampaign_promotions/fpc_analytics</container>
+        </rapidcampaign_promotions_analytics_base_holepunch>
+    </placeholders>
+</config>
