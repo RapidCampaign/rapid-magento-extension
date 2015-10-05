@@ -1,0 +1,11 @@
+{
+    "name": "rpd/rapid-magento-extension",
+    "description": "RapidCampaign Magento extension",
+    "authors": [
+        {
+            "name": "RapidCampaign",
+            "email": "support@rapidcampaign.com"
+        }
+    ],
+    "require": {}
+}
