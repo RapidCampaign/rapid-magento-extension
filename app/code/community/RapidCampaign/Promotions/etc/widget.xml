@@ -13,7 +13,8 @@
         <name>RapidCampaign Promotion</name>
         <parameters>
             <unique_id>
-                <required>1</required>
+                <required>0</required>
+                <sort_order>0</sort_order>
             </unique_id>
             <promotion type="complex" translate="label">
                 <visible>1</visible>
