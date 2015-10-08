@@ -218,10 +218,24 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
     {
         $info = parent::getCacheKeyInfo();
 
-        if ($id = $this->getData('unique_id')) {
+        if ($id = $this->getUniqueId()) {
             $info['unique_id'] = (string)$id;
         }
 
         return $info;
+    }
+
+    /**
+     * Set unique id of widget instance if its not set
+     * Sometimes core functionality for setting unique_id doesn't work
+     *
+     * @return string
+     */
+    public function getUniqueId()
+    {
+        if (!$this->_getData('unique_id')) {
+            $this->setData('unique_id', md5(microtime(1)));
+        }
+        return $this->_getData('unique_id');
     }
 }
