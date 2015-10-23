@@ -12,6 +12,7 @@
     <default>
         <reference name="head">
             <action method="addJs"><script>lightwindow/lightwindow.js</script></action>
+            <action method="addItem"><type>skin_css</type><name>css/lightwindow.css</name></action>
             <block type="rapidcampaign_promotions/analytics_base" name="rapidcampaign_analytics_base" />
         </reference>
     </default>
