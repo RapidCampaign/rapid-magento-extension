@@ -100,19 +100,29 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             $embedScript = self::IFRAME_JS_BASE_URL;
         }
 
+        $isModalEnabled = $this->getData('modal_enabled');
+        if ($isModalEnabled) {
+            $modalDelay = $this->getData('modal_delay');
+        }
+        $hideDiv = $isModalEnabled ? "display:none" : "";
+
         if (preg_match('/sales/i', $promotionData['promotion_category'])) {
             $embedScript .= self::IFRAME_SALES_EMBED;
-            $iframeString = sprintf('<div class="_rc_iframe" data-url="%s" data-width="%s" data-height="%s"></div>', $iframeUrl,
+
+            $iframeString = sprintf('<div class="_rc_iframe" style="%s" data-url="%s" data-width="%s" data-height="%s"></div>', $hideDiv, $iframeUrl,
                 $iframeWidth, $iframeHeight);
 
         } else {
             $embedScript .= self::IFRAME_MARKETING_EMBED;
-            $iframeString = sprintf('<div class="_rc_miframe" data-url="%s"></div>', $iframeUrl);
+            $iframeString = sprintf('<div class="_rc_miframe"  style="%s" data-url="%s"></div>', $hideDiv, $iframeUrl);
         }
 
         $jsString = sprintf('<script type="text/javascript" src="%s"></script>', $embedScript);
 
-        return $iframeString . $jsString;
+        $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(),
+            $modalDelay, $iframeUrl, $iframeWidth, $iframeHeight);
+
+        return $modalString . $iframeString . $jsString;
     }
 
     /**

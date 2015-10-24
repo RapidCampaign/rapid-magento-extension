@@ -38,12 +38,11 @@
 	}
 
 	#lightwindow_contents {
-		overflow: hidden;
 		z-index: 0;
 		position: relative;
-		border: 10px solid #ffffff;
+		border: 25px solid #ffffff;
 		background-color: #ffffff;
-	}		
+	}
 
 #lightwindow_loading {
 	/* REQUIRED */
@@ -333,12 +332,10 @@
 		float: left;
 		overflow: hidden;
 	}
-	
 #lightwindow_title_bar {
 	height: 25px;
 	overflow: hidden;		
 }
-
 	#lightwindow_title_bar_title {
 		color: #ffffbe;
 		font-size: 14px;
@@ -347,16 +344,17 @@
 		float: left;
 	}
 
-	a#lightwindow_title_bar_close_link,	
-	a:link#lightwindow_title_bar_close_link,
-	a:visited#lightwindow_title_bar_close_link {
+#lightwindow_contents a#lightwindow_title_bar_close_link,
+#lightwindow_contents a:link#lightwindow_title_bar_close_link,
+#lightwindow_contents a:visited#lightwindow_title_bar_close_link {
 		float: right;
-		text-align: right;		
+		position: absolute;
+		top: -20px;
+		right: -20px;
 		cursor: pointer;
-		color: #ffffbe;
-		line-height: 25px;
-		padding: 0;
-		margin: 0;
+		color: black;
+		display: inline;
+		font-weight: lighter;
 	}
 	
 	a:hover#lightwindow_title_bar_close_link,
@@ -372,5 +370,3 @@
 	color: #000000;
 	padding-right: 10px;
 }
-
-

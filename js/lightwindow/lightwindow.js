@@ -161,7 +161,6 @@ lightwindow.prototype = {
 							'<div id="lightwindow_title_bar" >'+
 								'<div id="lightwindow_title_bar_inner" >'+
 									'<span id="lightwindow_title_bar_title"></span>'+
-									'<a id="lightwindow_title_bar_close_link" >close</a>'+
 								'</div>'+
 							'</div>'+
 							'<div id="lightwindow_stage" >'+
@@ -276,6 +275,9 @@ lightwindow.prototype = {
 	deactivate : function(){
 		// The window is not active
 		this.windowActive = false;
+
+		// Cookie setting.  Change of course!
+		setPromotionDismissalCookie();
 		
 		// There is no longer a gallery active
 		this.activeGallery = false;
@@ -583,11 +585,11 @@ lightwindow.prototype = {
 		
 		if (contents) {
 			// Empty the contents
-			$('lightwindow_contents').innerHTML = '';
+			$('lightwindow_contents').innerHTML = '<a id="lightwindow_title_bar_close_link" >X</a>';
 			
 			// Reset the scroll bars
 			$('lightwindow_contents').setStyle({
-				overflow: 'hidden'
+				//overflow: 'hidden'
 			});		
 			
 			if (!this.windowActive) {
