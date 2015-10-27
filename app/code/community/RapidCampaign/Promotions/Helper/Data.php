@@ -34,8 +34,7 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
                         myLightWindow.activateWindow({
                             href: '$iframeUrl',
                             width: '$iframeWidth',
-                            height: 'auto'
-                            iframeEmbed: 'true',
+                            height: '$iframeHeight',
                         });
                     }, $modalDelay * 1000);
                 }
