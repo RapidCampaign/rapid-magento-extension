@@ -25,9 +25,10 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
             <script type="text/javascript">
             //<![CDATA[
 
+            var dims = document.viewport.getDimensions();
+
             var modalWidth = '$iframeWidth';
             if (!modalWidth) {
-                var dims = document.viewport.getDimensions();
                 modalWidth = dims.width * 0.9;
                 if (modalWidth > 1000) {
                     modalWidth = 1000;
@@ -36,7 +37,7 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
 
             var modalHeight = '$iframeHeight';
             if (!modalHeight) {
-                modalHeight = 'auto';
+                modalHeight = dims.height * 0.8;
             }
 
             Event.observe(window, 'load', loadModalAfterDelay, false);
