@@ -119,14 +119,20 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
 
         $jsString = sprintf('<script type="text/javascript" src="%s"></script>', $embedScript);
 
-        $modalUrl    = $iframeUrl;
-        $modalWidth  = $promotionData['width'] ? : null;
-        $modalHeight = $promotionData['height'] ? : null;
+        $html = $iframeString . $jsString;
 
-        $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(),
-            $modalDelay, $modalUrl, $modalWidth, $modalHeight);
+        if ($isModalEnabled) {
+            // If modal enabled, prepend modal JS
+            $modalWidth  = $promotionData['width'] ? : null;
+            $modalHeight = $promotionData['height'] ? : null;
 
-        return $modalString . $iframeString . $jsString;
+            $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(),
+                $modalDelay, $iframeUrl, $modalWidth, $modalHeight);
+
+            $html = $modalString . $html;
+        }
+
+        return $html;
     }
 
     /**
