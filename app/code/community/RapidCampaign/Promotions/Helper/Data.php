@@ -10,7 +10,7 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const PROMOTION_MODAL_COOKIE_NAME = 'rapidcampaign_promotion_';
 
-    public function getPromotionModalJs($promotionUniqueId, $modalDelay, $iframeUrl, $iframeWidth = null, $iframeHeight = null)
+    public function getPromotionModalJs($promotionUniqueId, $modalDelay = 0, $iframeUrl, $iframeWidth = null, $iframeHeight = null)
     {
         // should we show modal?
         $cookieName = $this->getPromotionModalCookieName($promotionUniqueId);
