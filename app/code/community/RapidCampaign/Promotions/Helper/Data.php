@@ -12,6 +12,7 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function getPromotionModalJs($promotionUniqueId, $modalDelay, $iframeUrl, $iframeWidth = null, $iframeHeight = null)
     {
+        // should we show modal?
         $cookieName = $this->getPromotionModalCookieName($promotionUniqueId);
         $cookie = Mage::getModel('core/cookie')->get($cookieName);
         $cookieExpires = Mage::helper('rapidcampaign_promotions/config')->getCookieLifetime();
@@ -24,6 +25,20 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
             <script type="text/javascript">
             //<![CDATA[
 
+            var modalWidth = '$iframeWidth';
+            if (!modalWidth) {
+                var dims = document.viewport.getDimensions();
+                modalWidth = dims.width * 0.9;
+                if (modalWidth > 1000) {
+                    modalWidth = 1000;
+                }
+            }
+
+            var modalHeight = '$iframeHeight';
+            if (!modalHeight) {
+                modalHeight = 'auto';
+            }
+
             Event.observe(window, 'load', loadModalAfterDelay, false);
 
             function loadModalAfterDelay() {
@@ -33,8 +48,8 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
                     function(){
                         myLightWindow.activateWindow({
                             href: '$iframeUrl',
-                            width: '$iframeWidth',
-                            height: '$iframeHeight',
+                            width: modalWidth,
+                            height: modalHeight,
                         });
                     }, $modalDelay * 1000);
                 }
