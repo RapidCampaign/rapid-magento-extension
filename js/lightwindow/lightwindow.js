@@ -165,6 +165,7 @@ lightwindow.prototype = {
 							'</div>'+
 							'<div id="lightwindow_stage" >'+
 								'<div id="lightwindow_contents" >'+
+									'<a id="lightwindow_title_bar_close_link" >X</a>' +
 								'</div>'+
 								'<div id="lightwindow_navigation" >'+
 									'<a href="#" id="lightwindow_previous" >'+
@@ -509,10 +510,7 @@ lightwindow.prototype = {
 		body.appendChild(overlay);
 		body.appendChild(lw);	
 				
-		if ($('lightwindow_title_bar_close_link')) {
-			Event.observe('lightwindow_title_bar_close_link', 'click', this.deactivate.bindAsEventListener(this));
-			$('lightwindow_title_bar_close_link').onclick = function() {return false;};
-		}
+
 			
 		Event.observe($('lightwindow_previous'), 'click', this.navigateWindow.bind(this, 'previous'), false);
 		$('lightwindow_previous').onclick = function() {return false;};		
@@ -538,7 +536,13 @@ lightwindow.prototype = {
 	//  Add loading window markup
 	//
 	_addLoadingWindowMarkup : function() {
+		$('lightwindow_contents').innerHTML +='<a id="lightwindow_title_bar_close_link" >X</a>';
 		$('lightwindow_contents').innerHTML += this.options.skin.loading;
+
+		if ($('lightwindow_title_bar_close_link')) {
+			Event.observe('lightwindow_title_bar_close_link', 'click', this.deactivate.bindAsEventListener(this));
+			$('lightwindow_title_bar_close_link').onclick = function() {return false;};
+		}
 	},
 	//
 	//  Setup the window elements
@@ -585,8 +589,8 @@ lightwindow.prototype = {
 		
 		if (contents) {
 			// Empty the contents
-			$('lightwindow_contents').innerHTML = '<a id="lightwindow_title_bar_close_link" >X</a>';
-			
+			$('lightwindow_contents').innerHTML = ''
+
 			// Reset the scroll bars
 			$('lightwindow_contents').setStyle({
 				//overflow: 'hidden'
