@@ -6,7 +6,7 @@
  * @package     RapidCampaign_Promotions
  * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
  */
-class RapidCampaign_Promotions_Adminhtml_RapidCampaign_PromotionController extends Mage_Adminhtml_Controller_Action
+class RapidCampaign_Promotions_Adminhtml_Rapidcampaign_PromotionController extends Mage_Adminhtml_Controller_Action
 {
     const PROMOTIONS_FETCH_SUCCESS_MESSAGE = 'Promotions have been successfully updated.';
     const PROMOTIONS_FETCH_FAIL_MESSAGE = 'Promotions have not been updated.';
