@@ -28,7 +28,7 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
     public function prepareElementHtml(Varien_Data_Form_Element_Abstract $element)
     {
         $uniqId    = Mage::helper('core')->uniqHash($element->getId());
-        $sourceUrl = $this->getUrl('rapidcampaign/adminhtml_chooser/chooser', array('uniq_id' => $uniqId));
+        $sourceUrl = $this->getUrl('adminhtml/rapidcampaign_chooser/chooser', array('uniq_id' => $uniqId));
 
         $chooser = $this->getLayout()->createBlock('widget/adminhtml_widget_chooser')
             ->setElement($element)
@@ -148,6 +148,6 @@ class RapidCampaign_Promotions_Block_Widget_Grid_Chooser extends Mage_Adminhtml_
 
     public function getGridUrl()
     {
-        return $this->getUrl('rapidcampaign/adminhtml_chooser/chooser', array('_current' => true));
+        return $this->getUrl('adminhtml/rapidcampaign_chooser/chooser', array('_current' => true));
     }
 }

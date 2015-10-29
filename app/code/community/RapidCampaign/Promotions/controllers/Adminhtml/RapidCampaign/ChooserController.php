@@ -6,7 +6,7 @@
  * @package     RapidCampaign_Promotions
  * @copyright   Copyright (c) 2015 RapidCampaign (http://rapidcampaign.com)
  */
-class RapidCampaign_Promotions_Adminhtml_ChooserController extends Mage_Adminhtml_Controller_Action
+class RapidCampaign_Promotions_Adminhtml_RapidCampaign_ChooserController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Chooser Source action
