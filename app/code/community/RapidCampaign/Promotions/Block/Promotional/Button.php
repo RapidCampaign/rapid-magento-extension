@@ -18,7 +18,7 @@ class RapidCampaign_Promotions_Block_Promotional_Button extends Mage_Adminhtml_B
 
         $this->setElement($element);
 
-        $url = Mage::helper("adminhtml")->getUrl('rapidcampaign/adminhtml_promotion/update');
+        $url = Mage::helper("adminhtml")->getUrl('adminhtml/rapidcampaign_promotion/update');
 
         $html = $this->getLayout()->createBlock('adminhtml/widget_button')
             ->setLabel($elementData['original_data']['button_label'])
