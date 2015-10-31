@@ -119,12 +119,11 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
 
         $jsString = sprintf('<script type="text/javascript" src="%s"></script>', $embedScript);
 
-        $modalUrl    = $iframeUrl;
         $modalWidth  = $promotionData['width'] ? : null;
         $modalHeight = $promotionData['height'] ? : null;
 
-        $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(),
-            $modalDelay, $modalUrl, $modalWidth, $modalHeight);
+        $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($iframeUrl,
+            $modalDelay, $modalWidth, $modalHeight);
 
         return $modalString . $iframeString . $jsString;
     }
