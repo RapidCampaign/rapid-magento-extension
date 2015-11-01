@@ -37,7 +37,7 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
                 $$("._rc_miframe").each(function (elem) {
                     var iframeUrl = elem.dataset.url;
                     if (thisIframeUrl == iframeUrl) {
-                        new PromotionModal(elem.id, '$modalDelay', '$iframeWidth');
+                        new PromotionModal(elem.id, '$modalDelay', '$iframeWidth', '$cookieName','$cookieExpires');
                     }
                 });
             }

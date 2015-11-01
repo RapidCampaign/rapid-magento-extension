@@ -1,26 +1,28 @@
 var PromotionModal = Class.create();
 PromotionModal.prototype = {
 
-    initialize: function(iframeId, delay, width) {
+    initialize: function(iframeId, delay, width, cookieName, cookieExpires) {
 
         this.iframeId = '#' + iframeId;
+        this.delay = delay * 1000; // in seconds
         this.width = width;
-        this.delay = delay * 1000;
+        this.cookieName = cookieName;
+        this.cookieExpires = cookieExpires;
 
-        if (!this.hasCookie()){
+        if (!this.hasCookieSet()){
             this.load();
         }
     },
 
     load: function () {
+        var promotionModal = this;
         Custombox.open({
             target: this.iframeId,
             effect: 'fadein',
             width: this.getWidth(),
-            overlaySpeed: this.delay,
-            loading: {
-                delay: this.delay,
-            }
+            close: function() {
+                promotionModal.setCookie();
+            },
         });
     },
 
@@ -36,22 +38,17 @@ PromotionModal.prototype = {
         return this.width;
     },
 
-    getHeight: function(modalHeight) {
-        if (!modalHeight) {
-            modalHeight = 'auto';
-        }
+    hasCookieSet: function() {
+        if (document.cookie.indexOf(this.cookieName) >= 0)
+            return true;
 
-        return modalHeight;
-    },
-
-    hasCookie: function() {
         return false;
     },
 
-    setCookie: function (name, expires) {
-            var cookieStr = name + "=" + escape(1) + "; ";
-            if (expires) {
-                var expiresDate = new Date(new Date().getTime() + expires * 24 * 60 * 60 * 1000);
+    setCookie: function () {
+            var cookieStr = this.cookieName + "=" + escape(1) + "; ";
+            if (this.cookieExpires) {
+                var expiresDate = new Date(new Date().getTime() + parseInt(this.cookieExpires) * 24 * 60 * 60 * 1000);
                 cookieStr += "expires=" + expiresDate.toGMTString() + "; ";
             }
             if (Mage.Cookies.path) {
