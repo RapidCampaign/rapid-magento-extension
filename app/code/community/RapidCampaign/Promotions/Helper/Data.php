@@ -25,9 +25,22 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
             <!-- RapidCampaign Modal Begins -->
             <script type="text/javascript">
             //<![CDATA[
-            document.observe("dom:loaded", function() {
-                var modal = new PromotionModal("$iframeUrl", '$modalDelay', '$iframeWidth');
-            });
+
+            Event.observe(window, 'load', checkExternalJsLoad);
+
+            function checkExternalJsLoad() {
+                setTimeout(loadModal, 1000);
+            }
+
+            function loadModal() {
+	            var thisIframeUrl = '$iframeUrl';
+                $$("._rc_miframe").each(function (elem) {
+                    var iframeUrl = elem.dataset.url;
+                    if (thisIframeUrl == iframeUrl) {
+                        new PromotionModal(elem.id, '$modalDelay', '$iframeWidth');
+                    }
+                });
+            }
             //]]></script>
             <!-- RapidCampaign Modal Ends -->
 SCRIPT;

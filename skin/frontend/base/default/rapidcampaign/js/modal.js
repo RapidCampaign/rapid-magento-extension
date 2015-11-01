@@ -1,8 +1,9 @@
 var PromotionModal = Class.create();
 PromotionModal.prototype = {
 
-    initialize: function(iframe, delay, width) {
-        this.iframe = "._rc_miframe";//iframe;
+    initialize: function(iframeId, delay, width) {
+
+        this.iframeId = '#' + iframeId;
         this.width = width;
         this.delay = delay * 1000;
 
@@ -13,7 +14,7 @@ PromotionModal.prototype = {
 
     load: function () {
         Custombox.open({
-            target: this.iframe,
+            target: this.iframeId,
             effect: 'fadein',
             width: this.getWidth(),
             overlaySpeed: this.delay,
