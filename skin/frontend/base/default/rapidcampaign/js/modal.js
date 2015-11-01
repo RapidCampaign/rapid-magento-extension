@@ -3,7 +3,7 @@ PromotionModal.prototype = {
 
     initialize: function(iframeId, delay, width, cookieName, cookieExpires) {
 
-        this.iframeId = '#' + iframeId;
+        this.iframeId = iframeId;
         this.delay = delay * 1000; // in seconds
         this.width = width;
         this.cookieName = cookieName;
@@ -17,14 +17,26 @@ PromotionModal.prototype = {
     load: function () {
         var promotionModal = this;
         Custombox.open({
-            target: this.iframeId,
+            target: "#" + this.iframeId,
             effect: 'fadein',
             width: this.getWidth(),
             close: function() {
+                $$('modal-close').remove();
                 promotionModal.setCookie();
             },
         });
-    },
+
+        /**
+         *
+         * @todo Replace with appropriate Mage JS function to get local files
+         */
+        var imageUrl = 'skin/frontend/base/default/rapidcampaign/images/x.svg';
+
+        var html = '<a href="#" onclick="Custombox.close();"><img src="'+imageUrl+'", class="modal-close", width="15px", style="position: absolute; right: 0;" ></a>';
+        $(this.iframeId).insert({
+            top: html
+        });
+},
 
     getWidth: function() {
         if (!this.width) {
