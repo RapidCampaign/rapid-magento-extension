@@ -128,7 +128,7 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             $modalDelay = $this->getData('modal_delay');
             $modalWidth  = $promotionData['width'] ? : null;
             $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(), $modalDelay, $modalWidth);
-            $html = $modalString . $html;
+            $html .= $modalString;
         }
 
         return $html;
