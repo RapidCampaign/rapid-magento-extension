@@ -106,29 +106,32 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         }
 
         $isModalEnabled = $this->getData('modal_enabled');
-        if ($isModalEnabled) {
-            $modalDelay = $this->getData('modal_delay');
-        }
         $hideDiv = $isModalEnabled ? "display:none" : "";
 
         if (preg_match('/sales/i', $promotionData['promotion_category'])) {
             $embedScript .= self::IFRAME_SALES_EMBED;
 
-            $iframeString = sprintf('<div class="_rc_iframe" style="%s" data-url="%s" data-width="%s" data-height="%s"></div>', $hideDiv, $iframeUrl,
-                $iframeWidth, $iframeHeight);
+            $iframeString = sprintf('<div class="_rc_iframe %s" style="%s" data-url="%s" data-width="%s" data-height="%s"></div>',
+                '_rc_' . $this->getUniqueId(), $hideDiv, $iframeUrl, $iframeWidth, $iframeHeight);
 
         } else {
             $embedScript .= self::IFRAME_MARKETING_EMBED;
-            $iframeString = sprintf('<div class="_rc_miframe %s" style="%s" data-url="%s"></div>', '_rc_' . $this->getUniqueId(), $hideDiv, $iframeUrl);
+            $iframeString = sprintf('<div class="_rc_miframe %s" style="%s" data-url="%s"></div>',
+                '_rc_' . $this->getUniqueId(), $hideDiv, $iframeUrl);
         }
 
         $jsString = sprintf('<script type="text/javascript" src="%s"></script>', $embedScript);
 
-        $modalWidth  = $promotionData['width'] ? : null;
+        $html = $iframeString . $jsString;
 
-        $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(), $modalDelay, $modalWidth);
+        if ($isModalEnabled) {
+            $modalDelay = $this->getData('modal_delay');
+            $modalWidth  = $promotionData['width'] ? : null;
+            $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(), $modalDelay, $modalWidth);
+            $html = $modalString . $html;
+        }
 
-        return $modalString . $iframeString . $jsString;
+        return $html;
     }
 
     /**
