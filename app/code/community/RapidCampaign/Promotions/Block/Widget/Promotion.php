@@ -74,7 +74,12 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         );
 
         if ($sessionModel->isLoggedIn()) {
+            /** @var Mage_Customer_Model_Customer $customer */
             $customer = $sessionModel->getCustomer();
+
+            if ($customer->getId()) {
+                $urlParams['customer_id'] = $customer->getId();
+            }
 
             if ($customer->getFirstname()) {
                 $urlParams['first_name'] = $customer->getFirstname();

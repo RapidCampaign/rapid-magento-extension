@@ -60,13 +60,13 @@
     </global>
     <admin>
         <routers>
-            <rapidcampaign>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>RapidCampaign_Promotions</module>
-                    <frontName>rapidcampaign</frontName>
+                    <modules>
+                        <rapidcampaign_promotions after="Mage_Adminhtml">RapidCampaign_Promotions_Adminhtml</rapidcampaign_promotions>
+                    </modules>
                 </args>
-            </rapidcampaign>
+            </adminhtml>
         </routers>
     </admin>
     <frontend>
