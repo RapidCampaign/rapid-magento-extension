@@ -21,7 +21,6 @@ PromotionModal.prototype = {
             effect: 'fadein',
             width: this.getWidth(),
             close: function() {
-                $$('modal-close').remove();
                 promotionModal.setCookie();
             },
         });
