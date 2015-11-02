@@ -19,16 +19,16 @@ PromotionModal.prototype = {
         promotionModal = this;
         setTimeout(function() {
             Custombox.open({
-                target: "#" + promotionModal.iframeId,
+                target: "." + promotionModal.iframeId,
                 effect: 'fadein',
                 width: promotionModal.width,
                 close: function() {
                     promotionModal.setCookie();
-                },
+                }
             });
 
             var html = '<a href="#" class="modal-close" onclick="Custombox.close();">Close</a>';
-            $(promotionModal.iframeId).insert({
+            document.querySelector('.custombox-modal').insert({
                 top: html
             });
 

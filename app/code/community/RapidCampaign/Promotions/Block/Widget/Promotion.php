@@ -119,14 +119,14 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
 
         } else {
             $embedScript .= self::IFRAME_MARKETING_EMBED;
-            $iframeString = sprintf('<div class="_rc_miframe"  style="%s" data-url="%s"></div>', $hideDiv, $iframeUrl);
+            $iframeString = sprintf('<div class="_rc_miframe %s" style="%s" data-url="%s"></div>', '_rc_' . $this->getUniqueId(), $hideDiv, $iframeUrl);
         }
 
         $jsString = sprintf('<script type="text/javascript" src="%s"></script>', $embedScript);
 
         $modalWidth  = $promotionData['width'] ? : null;
 
-        $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($iframeUrl, $this->getUniqueId(), $modalDelay, $modalWidth);
+        $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(), $modalDelay, $modalWidth);
 
         return $modalString . $iframeString . $jsString;
     }

@@ -10,7 +10,7 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const PROMOTION_MODAL_COOKIE_NAME = 'rapidcampaign_promotion_';
 
-    public function getPromotionModalJs($iframeUrl, $promotionUniqueId, $modalDelay, $iframeWidth = null)
+    public function getPromotionModalJs($promotionUniqueId, $modalDelay, $iframeWidth = null)
     {
 
         // should we show modal?
@@ -26,20 +26,10 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
             <script type="text/javascript">
             //<![CDATA[
 
-            Event.observe(window, 'load', checkExternalJsLoad);
-
-            function checkExternalJsLoad() {
-                setTimeout(loadModal, 100);
-            }
+            Event.observe(window, 'load', loadModal);
 
             function loadModal() {
-	            var thisIframeUrl = '$iframeUrl';
-                $$("._rc_miframe").each(function (elem) {
-                    var iframeUrl = elem.dataset.url;
-                    if (thisIframeUrl == iframeUrl) {
-                        new PromotionModal(elem.id, '$modalDelay', '$iframeWidth', '$cookieName','$cookieExpires');
-                    }
-                });
+                new PromotionModal('_rc_$promotionUniqueId', '$modalDelay', '$iframeWidth', '$cookieName','$cookieExpires');
             }
             //]]></script>
             <!-- RapidCampaign Modal Ends -->
