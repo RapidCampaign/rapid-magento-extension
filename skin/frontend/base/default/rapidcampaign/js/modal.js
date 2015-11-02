@@ -6,6 +6,7 @@ PromotionModal.prototype = {
         this.iframeId = iframeId;
         this.delay = delay * 1000; // in seconds
         this.width = width;
+        this.getWidth();
         this.cookieName = cookieName;
         this.cookieExpires = cookieExpires;
 
@@ -15,27 +16,30 @@ PromotionModal.prototype = {
     },
 
     load: function () {
-        var promotionModal = this;
-        Custombox.open({
-            target: "#" + this.iframeId,
-            effect: 'fadein',
-            width: this.getWidth(),
-            close: function() {
-                promotionModal.setCookie();
-            },
-        });
+        promotionModal = this;
+        setTimeout(function() {
+            Custombox.open({
+                target: "#" + promotionModal.iframeId,
+                effect: 'fadein',
+                width: promotionModal.width,
+                close: function() {
+                    promotionModal.setCookie();
+                },
+            });
 
-        /**
-         *
-         * @todo Replace with appropriate Mage JS function to get local files
-         */
-        var imageUrl = 'skin/frontend/base/default/rapidcampaign/images/x.svg';
+            /**
+             *
+             * @todo Replace with appropriate Mage JS function to get local files
+             */
+            var imageUrl = 'skin/frontend/base/default/rapidcampaign/images/x.svg';
 
-        var html = '<a href="#" onclick="Custombox.close();"><img src="'+imageUrl+'", class="modal-close", width="15px", style="position: absolute; right: 0;" ></a>';
-        $(this.iframeId).insert({
-            top: html
-        });
-},
+            var html = '<a href="#" onclick="Custombox.close();"><img src="'+imageUrl+'", class="modal-close", width="15px", style="position: absolute; right: 0;" ></a>';
+            $(promotionModal.iframeId).insert({
+                top: html
+            });
+
+        }, this.delay);
+    },
 
     getWidth: function() {
         if (!this.width) {
@@ -46,7 +50,7 @@ PromotionModal.prototype = {
             }
         }
 
-        return this.width;
+        return
     },
 
     hasCookieSet: function() {
