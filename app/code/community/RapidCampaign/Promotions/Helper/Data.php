@@ -29,7 +29,7 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
             Event.observe(window, 'load', checkExternalJsLoad);
 
             function checkExternalJsLoad() {
-                setTimeout(loadModal, 1000);
+                setTimeout(loadModal, 100);
             }
 
             function loadModal() {
