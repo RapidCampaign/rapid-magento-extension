@@ -1,0 +1,14 @@
+.custombox-modal {
+    background: white;
+    padding: 20px;
+}
+
+.custombox-modal .modal-close {
+    background: url('../images/x.svg') no-repeat top left;
+    background-size: contain;
+    position: absolute;
+    text-indent: -9999px;
+    top: 4px;
+    right: 4px;
+    width: 12px;
+}

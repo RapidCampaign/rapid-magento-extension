@@ -27,13 +27,7 @@ PromotionModal.prototype = {
                 },
             });
 
-            /**
-             *
-             * @todo Replace with appropriate Mage JS function to get local files
-             */
-            var imageUrl = 'skin/frontend/base/default/rapidcampaign/images/x.svg';
-
-            var html = '<a href="#" onclick="Custombox.close();"><img src="'+imageUrl+'", class="modal-close", width="15px", style="position: absolute; right: 0;" ></a>';
+            var html = '<a href="#" class="modal-close" onclick="Custombox.close();">Close</a>';
             $(promotionModal.iframeId).insert({
                 top: html
             });
