@@ -25,12 +25,8 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
             <!-- RapidCampaign Modal Begins -->
             <script type="text/javascript">
             //<![CDATA[
-
-            Event.observe(window, 'load', loadModal);
-
-            function loadModal() {
-                new PromotionModal('_rc_$promotionUniqueId', '$modalDelay', '$iframeWidth', '$cookieName','$cookieExpires');
-            }
+                new PromotionModal('_rc_$promotionUniqueId', '$modalDelay', '$iframeWidth',
+                    '$cookieName','$cookieExpires');
             //]]></script>
             <!-- RapidCampaign Modal Ends -->
 SCRIPT;

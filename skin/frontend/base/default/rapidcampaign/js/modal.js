@@ -11,7 +11,7 @@ PromotionModal.prototype = {
         this.cookieExpires = cookieExpires;
 
         if (!this.hasCookieSet()){
-            this.load();
+            window.addEventListener('load', this.load.bind(this), false);
         }
     },
 
