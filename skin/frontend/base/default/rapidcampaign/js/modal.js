@@ -6,7 +6,6 @@ PromotionModal.prototype = {
         this.iframeId = iframeId;
         this.delay = delay * 1000; // in seconds
         this.width = width;
-        this.getWidth();
         this.cookieName = cookieName;
         this.cookieExpires = cookieExpires;
 
@@ -21,7 +20,7 @@ PromotionModal.prototype = {
             Custombox.open({
                 target: "." + promotionModal.iframeId,
                 effect: 'fadein',
-                width: promotionModal.width,
+                width: promotionModal.getWidth(),
                 close: function() {
                     promotionModal.setCookie();
                 }
@@ -44,7 +43,7 @@ PromotionModal.prototype = {
             }
         }
 
-        return
+        return this.width;
     },
 
     hasCookieSet: function() {
