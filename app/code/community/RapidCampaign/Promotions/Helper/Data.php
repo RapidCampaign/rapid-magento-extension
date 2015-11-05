@@ -10,12 +10,18 @@ class RapidCampaign_Promotions_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const PROMOTION_MODAL_COOKIE_NAME = 'rapidcampaign_promotion_';
 
+    /**
+     * Create a CustomBox JS modal call for a specific promotion.
+     *
+     * @param $promotionUniqueId
+     * @param $modalDelay
+     * @param null $iframeWidth
+     * @return string
+     */
     public function getPromotionModalJs($promotionUniqueId, $modalDelay, $iframeWidth = null)
     {
-
-        // should we show modal?
+        // obtain cookie name and expiry time
         $cookieName = $this->getPromotionModalCookieName($promotionUniqueId);
-        $cookie = Mage::getModel('core/cookie')->get($cookieName);
         $cookieExpires = Mage::helper('rapidcampaign_promotions/config')->getCookieLifetime();
         if (empty($cookieExpires)) {
             $cookieExpires = Mage::getModel("core/cookie")->getLifetime();
@@ -35,6 +41,8 @@ SCRIPT;
     }
 
     /**
+     * Get a unique cookie name from a promotion unique id.
+     *
      * @param $promotionUniqueId
      * @return string
      */
