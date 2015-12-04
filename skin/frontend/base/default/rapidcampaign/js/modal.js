@@ -9,9 +9,19 @@ PromotionModal.prototype = {
         this.cookieName = cookieName;
         this.cookieExpires = cookieExpires;
 
-        if (!this.hasCookieSet()){
+        if (!this.hasCookieSet() && this.isCompatible()){
             window.addEventListener('load', this.load.bind(this), false);
         }
+    },
+    
+    /*
+     * Modal window is buggy on older version of Android using the stock browser
+     * We are not going to provide these browsers with the promotion.
+     */
+    isCompatible: function() {
+        var androidMatch = window.navigator.userAgent.match(/Android.*AppleWebKit\/([\d.]+)/);
+        var isStockAndroid = (androidMatch && androidMatch[1]<537);
+        return !(isStockAndroid && false === 'AudioNode' in window);
     },
 
     load: function () {
