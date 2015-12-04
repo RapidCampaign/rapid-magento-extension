@@ -1,4 +1,5 @@
 <?php
+
 /**
  * RapidCampaign Promotion Widget Block
  *
@@ -8,14 +9,32 @@
  */
 class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Template implements Mage_Widget_Block_Interface
 {
-    // Default dimension
-    const IFRAME_WIDTH   = 300;
-    const IFRAME_HEIGHT  = 200;
-    const IFRAME_JS_BASE_URL      = '//assets.rpd.mobi/';
+    const IFRAME_CLASS_PREFIX = '_rc_';
+    const COOKIE_PREFIX = 'rapidcampaign_promotion_';
+    const IFRAME_WIDTH = 300;
+    const IFRAME_HEIGHT = 200;
+    const IFRAME_JS_BASE_URL = '//assets.rpd.mobi/';
     const IFRAME_JS_TEST_BASE_URL = '//assets-dev.rpd.mobi/';
-    const IFRAME_SALES_EMBED      = 'sales/embed.js';
-    const IFRAME_MARKETING_EMBED  = 'marketing/embed.js';
+    const IFRAME_SALES_EMBED = 'sales/embed.js';
+    const IFRAME_MARKETING_EMBED = 'marketing/embed.js';
 
+    protected $configHelper;
+
+    /**
+     * Get cache key informative items
+     *
+     * @return array
+     */
+    public function getCacheKeyInfo()
+    {
+        $info = parent::getCacheKeyInfo();
+
+        if ($id = $this->getUniqueId()) {
+            $info['unique_id'] = (string)$id;
+        }
+
+        return $info;
+    }
 
     /**
      * Render block HTML
@@ -24,8 +43,7 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
      */
     protected function _toHtml()
     {
-        /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
-        $configHelper = Mage::helper('rapidcampaign_promotions/config');
+        $configHelper = $this->getConfigHelper();
 
         // Module disabled
         if (!$configHelper->extensionEnabled()) {
@@ -41,7 +59,6 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             }
         }
 
-        // The rules not valid
         if (!$this->validateRules()) {
             return '';
         }
@@ -62,42 +79,12 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             return '';
         }
 
+        $urlParams = $this->getUrlParams($promotion);
         $promotionData = $promotion->getData();
 
-        /** @var Mage_Customer_Model_Session $sessionModel */
-        $sessionModel = Mage::getSingleton('customer/session');
-
-        $urlParams = array(
-            'promo_id'       => $promotionData['slug'],
-            'customer_group' => $sessionModel->getCustomerGroupId(),
-            'cart_value'     => $this->getCartTotal()
-        );
-
-        if ($sessionModel->isLoggedIn()) {
-            /** @var Mage_Customer_Model_Customer $customer */
-            $customer = $sessionModel->getCustomer();
-
-            if ($customer->getId()) {
-                $urlParams['customer_id'] = $customer->getId();
-            }
-
-            if ($customer->getFirstname()) {
-                $urlParams['first_name'] = $customer->getFirstname();
-            }
-
-            if ($customer->getLastname()) {
-                $urlParams['last_name'] = $customer->getLastname();
-            }
-        }
-
-        // Parameter encryption enabled
-        if ($configHelper->encryptionEnabled()) {
-            $urlParams = $this->encryptParameters($urlParams);
-        }
-
-        $iframeUrl    = $promotionData['embed_url'] . '?' . http_build_query($urlParams);
-        $iframeWidth  = $promotionData['width'] ? : self::IFRAME_WIDTH;
-        $iframeHeight = $promotionData['height'] ? : self::IFRAME_HEIGHT;
+        $iframeUrl = $promotionData['embed_url'] . '?' . http_build_query($urlParams);
+        $iframeWidth = $promotionData['width'] ?: self::IFRAME_WIDTH;
+        $iframeHeight = $promotionData['height'] ?: self::IFRAME_HEIGHT;
 
         if ($configHelper->testModeEnabled()) {
             $embedScript = self::IFRAME_JS_TEST_BASE_URL;
@@ -112,12 +99,12 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
             $embedScript .= self::IFRAME_SALES_EMBED;
 
             $iframeString = sprintf('<div class="_rc_iframe %s" style="%s" data-url="%s" data-width="%s" data-height="%s"></div>',
-                '_rc_' . $this->getUniqueId(), $hideDiv, $iframeUrl, $iframeWidth, $iframeHeight);
+                $this->getIframeClass($this->getUniqueId()), $hideDiv, $iframeUrl, $iframeWidth, $iframeHeight);
 
         } else {
             $embedScript .= self::IFRAME_MARKETING_EMBED;
             $iframeString = sprintf('<div class="_rc_miframe %s" style="%s" data-url="%s"></div>',
-                '_rc_' . $this->getUniqueId(), $hideDiv, $iframeUrl);
+                $this->getIframeClass($this->getUniqueId()), $hideDiv, $iframeUrl);
         }
 
         $jsString = sprintf('<script type="text/javascript" src="%s"></script>', $embedScript);
@@ -125,10 +112,7 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
         $html = $iframeString . $jsString;
 
         if ($isModalEnabled) {
-            $modalDelay = $this->getData('modal_delay');
-            $modalWidth  = $promotionData['width'] ? : null;
-            $modalString = Mage::helper('rapidcampaign_promotions')->getPromotionModalJs($this->getUniqueId(), $modalDelay, $modalWidth);
-            $html .= $modalString;
+            $html .= $this->getPromotionModalJs($promotion);
         }
 
         return $html;
@@ -180,7 +164,7 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
 
         /** @var Mage_Directory_Model_Currency $currentCurrency */
         $currentCurrency = Mage::app()->getStore()->getCurrentCurrency();
-        $baseCurrency    = Mage::app()->getStore()->getBaseCurrency();
+        $baseCurrency = Mage::app()->getStore()->getBaseCurrency();
 
         if ($currentCurrency->getCurrencyCode() == $baseCurrency->getCurrencyCode()) {
             return $grandTotal;
@@ -229,32 +213,136 @@ class RapidCampaign_Promotions_Block_Widget_Promotion extends Mage_Core_Block_Te
     }
 
     /**
-     * Get cache key informative items
-     *
-     * @return array
-     */
-    public function getCacheKeyInfo()
-    {
-        $info = parent::getCacheKeyInfo();
-
-        if ($id = $this->getUniqueId()) {
-            $info['unique_id'] = (string)$id;
-        }
-
-        return $info;
-    }
-
-    /**
      * Set unique id of widget instance if its not set
      * Sometimes core functionality for setting unique_id doesn't work
      *
      * @return string
      */
-    public function getUniqueId()
+    protected function getUniqueId()
     {
         if (!$this->_getData('unique_id')) {
             $this->setData('unique_id', md5(microtime(1)));
         }
         return $this->_getData('unique_id');
+    }
+
+    /**
+     * Build URL params for information that should be passed to RapidCampaign
+     *
+     * @param $promotion
+     * @return array
+     */
+    /**
+     * @param $promotion RapidCampaign_Promotions_Model_Promotions
+     * @return array
+     */
+    protected function getUrlParams($promotion)
+    {
+        $configHelper = $this->getConfigHelper();
+
+        /** @var Mage_Customer_Model_Session $sessionModel */
+        $sessionModel = Mage::getSingleton('customer/session');
+
+        $urlParams = array(
+            'promo_id' => $promotion->getData('slug'),
+            'customer_group' => $sessionModel->getCustomerGroupId(),
+            'cart_value' => $this->getCartTotal()
+        );
+
+        if ($sessionModel->isLoggedIn()) {
+            /** @var Mage_Customer_Model_Customer $customer */
+            $customer = $sessionModel->getCustomer();
+
+            if ($customer->getId()) {
+                $urlParams['customer_id'] = $customer->getId();
+            }
+
+            if ($customer->getFirstname()) {
+                $urlParams['first_name'] = $customer->getFirstname();
+            }
+
+            if ($customer->getLastname()) {
+                $urlParams['last_name'] = $customer->getLastname();
+            }
+        }
+
+        // Parameter encryption enabled
+        if ($configHelper->encryptionEnabled()) {
+            $urlParams = $this->encryptParameters($urlParams);
+        }
+
+        return $urlParams;
+    }
+
+
+    /**
+     * Create a CustomBox JS modal call for a specific promotion.
+     *
+     * @param $promotion
+     * @return string
+     */
+    protected function getPromotionModalJs($promotion)
+    {
+        $configHelper = $this->getConfigHelper();
+
+        $iframeClass = $this->getIframeClass($this->getUniqueId());
+        $cookieName = $this->getCookieName($this->getUniqueId());
+
+        $modalDelay = $this->getData('modal_delay');
+        $modalWidth = $promotion->getData('width') ?: null;
+        $cookieExpires = $configHelper->getCookieLifetime();
+
+        if (empty($cookieExpires)) {
+            $cookieExpires = Mage::getModel("core/cookie")->getLifetime();
+        }
+
+        $html = <<<SCRIPT
+<!-- RapidCampaign Modal Begins -->
+<script type="text/javascript">
+//<![CDATA[
+    new PromotionModal('$iframeClass', '$modalDelay', '$modalWidth',
+        '$cookieName','$cookieExpires');
+//]]></script>
+<!-- RapidCampaign Modal Ends -->
+SCRIPT;
+
+        return $html;
+    }
+
+    /**
+     * Get class used for iframe.
+     *
+     * @param $promotionUniqueId
+     * @return string
+     */
+    protected function getIframeClass($promotionUniqueId)
+    {
+        return self::IFRAME_CLASS_PREFIX . $promotionUniqueId;
+    }
+
+    /**
+     * Get cookie name for promotion ID
+     *
+     * @param $promotionUniqueId
+     * @return string
+     */
+    protected function getCookieName($promotionUniqueId)
+    {
+        return self::COOKIE_PREFIX . $promotionUniqueId;
+    }
+
+    /**
+     * Get RapidCampaign Config Helper
+     *
+     * @return RapidCampaign_Promotions_Helper_Config
+     */
+    protected function getConfigHelper()
+    {
+        if (!$this->configHelper) {
+            /** @var RapidCampaign_Promotions_Helper_Config $configHelper */
+            $this->configHelper = Mage::helper('rapidcampaign_promotions/config');
+        }
+
+        return $this->configHelper;
     }
 }
