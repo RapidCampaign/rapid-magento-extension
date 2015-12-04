@@ -1,5 +1,5 @@
 <_>
-   <form_key>YQy5J8u0BHI4YqCD</form_key>
+   <form_key>ocLzIz8n7coM61BF</form_key>
    <name>RapidCampaign_Promotions</name>
    <channel>community</channel>
    <version_ids>
@@ -9,9 +9,9 @@
    <description>Gamified promotions activate customers 10x better than static deals. Target and personalize the promotions based on shopping cart value, customer segment or other relevant attributes. Test which deals are best in driving the conversion up. RapidCampaign combines fun, smartness and your brand experience into an easy-to-use sales conversion tool.</description>
    <license>Copyright RapidCampaign</license>
    <license_uri/>
-   <version>1.0.2</version>
+   <version>1.1.0</version>
    <stability>stable</stability>
-   <notes>Bugfix validation message upon widget insertion.</notes>
+   <notes>RapidCampaign promotions can now be shown in modal pop-ups.</notes>
    <authors>
       <name>
          <name>RapidCampaign</name>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>       </files>
+            <files>            </files>
          </files>
       </package>
       <extension>
