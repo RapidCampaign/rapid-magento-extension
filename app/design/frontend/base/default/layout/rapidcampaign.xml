@@ -11,6 +11,11 @@
 <layout version="0.1.0">
     <default>
         <reference name="head">
+            <action method="addJs"><script>custombox/custombox.min.js</script></action>
+            <action method="addJs"><script>custombox/legacy.min.js</script><params/><if>lt IE 10</if></action>
+            <action method="addItem"><type>skin_css</type><name>rapidcampaign/css/custombox.min.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>rapidcampaign/css/modal.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>rapidcampaign/js/modal.js</name></action>
             <block type="rapidcampaign_promotions/analytics_base" name="rapidcampaign_analytics_base" />
         </reference>
     </default>

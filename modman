@@ -1,8 +1,10 @@
 app/code/community/RapidCampaign/Promotions app/code/community/RapidCampaign/Promotions
 app/design/adminhtml/default/default/layout/rapidcampaign.xml app/design/adminhtml/default/default/layout/rapidcampaign.xml
 app/design/adminhtml/default/default/template/rapidcampaign app/design/adminhtml/default/default/template/rapidcampaign
-app/etc/modules/RapidCampaign_Promotions.xml app/etc/modules/RapidCampaign_Promotions.xml
-skin/adminhtml/default/default/rapidcampaign skin/adminhtml/default/default/rapidcampaign
-skin/adminhtml/default/default/images/rapidcampaign skin/adminhtml/default/default/images/rapidcampaign
 app/design/frontend/base/default/layout/rapidcampaign.xml app/design/frontend/base/default/layout/rapidcampaign.xml
+app/etc/modules/RapidCampaign_Promotions.xml app/etc/modules/RapidCampaign_Promotions.xml
+js/custombox js/custombox
+skin/adminhtml/default/default/rapidcampaign skin/adminhtml/default/default/rapidcampaign
+skin/adminhtml/default/default/images/rapidcampaign skin/adminhtml/default/default/images/RapidCampaign_Promotions
+skin/frontend/base/default/rapidcampaign skin/frontend/base/default/rapidcampaign
 RapidCampaign_Promotions.xml var/connect/RapidCampaign_Promotions.xml
