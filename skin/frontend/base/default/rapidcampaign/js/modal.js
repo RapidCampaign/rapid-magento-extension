@@ -20,16 +20,15 @@ PromotionModal.prototype = {
             Custombox.open({
                 target: "." + promotionModal.iframeId,
                 effect: 'fadein',
-                width: promotionModal.getWidth(),
-                close: function() {
-                    promotionModal.setCookie();
-                }
+                width: promotionModal.getWidth()
             });
 
             var html = '<a href="#" class="modal-close" onclick="Custombox.close();">Close</a>';
             document.querySelector('.custombox-modal').insert({
                 top: html
             });
+
+            promotionModal.setCookie();
 
         }, this.delay);
     },
@@ -54,7 +53,7 @@ PromotionModal.prototype = {
     },
 
     setCookie: function () {
-            var cookieStr = this.cookieName + "=" + escape(1) + "; ";
+            var cookieStr = this.cookieName + "=1;";
             if (this.cookieExpires) {
                 var expiresDate = new Date(new Date().getTime() + parseInt(this.cookieExpires) * 24 * 60 * 60 * 1000);
                 cookieStr += "expires=" + expiresDate.toGMTString() + "; ";
