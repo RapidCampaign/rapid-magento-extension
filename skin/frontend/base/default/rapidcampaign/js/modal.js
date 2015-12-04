@@ -25,7 +25,7 @@ PromotionModal.prototype = {
     },
 
     load: function () {
-        promotionModal = this;
+        var promotionModal = this;
         setTimeout(function() {
             Custombox.open({
                 target: "." + promotionModal.iframeId,
@@ -77,4 +77,3 @@ PromotionModal.prototype = {
             document.cookie = cookieStr;
         }
 };
-
