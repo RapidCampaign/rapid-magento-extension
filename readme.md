@@ -36,8 +36,7 @@ The user stories that this extension should achieve and maintain are as follows.
 This extension provides a modman file for further development.  [Modman](https://github.com/colinmollenhour/modman) is an easy way to install magento extensions via symlink. 
 
 	modman init
-    modman clone git@bitbucket.org:meanbee/rapidcampaign.git
-
+    modman clone git@bitbucket.org:nearme/rapid-magento-extension.git
 
 ## Components
 
