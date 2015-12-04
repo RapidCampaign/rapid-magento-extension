@@ -13,7 +13,7 @@ PromotionModal.prototype = {
             window.addEventListener('load', this.load.bind(this), false);
         }
     },
-    
+
     /*
      * Modal window is buggy on older version of Android using the stock browser
      * We are not going to provide these browsers with the promotion.
@@ -56,10 +56,7 @@ PromotionModal.prototype = {
     },
 
     hasCookieSet: function() {
-        if (document.cookie.indexOf(this.cookieName) >= 0)
-            return true;
-
-        return false;
+        return (document.cookie.indexOf(this.cookieName) >= 0);
     },
 
     setCookie: function () {
