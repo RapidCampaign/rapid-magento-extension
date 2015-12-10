@@ -13,7 +13,8 @@
         <name>RapidCampaign Promotion</name>
         <parameters>
             <unique_id>
-                <required>1</required>
+                <required>0</required>
+                <sort_order>0</sort_order>
             </unique_id>
             <promotion type="complex" translate="label">
                 <visible>1</visible>
@@ -30,13 +31,29 @@
                 </helper_block>
                 <sort_order>10</sort_order>
             </promotion>
+            <modal_enabled translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Use Modal Popup?</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <sort_order>20</sort_order>
+            </modal_enabled>
+            <modal_delay translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Delay in seconds upon page load when modal is shown.]]></description>
+                <label>Modal Popup Time Delay</label>
+                <type>text</type>
+                <sort_order>21</sort_order>
+            </modal_delay>
             <conditions translate="label">
                 <required>1</required>
                 <visible>1</visible>
                 <description><![CDATA[Restrict which customers see the promotion using the rule builder. For help see our <a target="_blank" href="http://support.rapidcampaign.com/customer/portal/articles/2122051-overview-to-magento-extension">support center</a>.]]></description>
                 <label>Targeting Conditions</label>
                 <type>rapidcampaign_promotions/widget_condition</type>
-                <sort_order>20</sort_order>
+                <sort_order>40</sort_order>
             </conditions>
         </parameters>
     </rapidcampaign_promotion>
